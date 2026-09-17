@@ -1,14 +1,18 @@
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
+const baseUrl = process.env["BASE_URL"] ?? (process.env["GITHUB_ACTIONS"] ? "/ArchGuard/" : "/");
+const url = process.env["SITE_URL"] ?? "https://Ashutosh-Yadav-256.github.io";
+
 const config: Config = {
-  title: "ArchStandards",
+  title: "ArchGuard",
   tagline: "Policy-as-code architecture governance platform for engineering teams",
   favicon: "img/favicon.ico",
-  url: "https://docs.archstandards.dev",
-  baseUrl: "/",
+  url,
+  baseUrl,
   organizationName: "Ashutosh-Yadav-256",
-  projectName: "archstandards",
+  projectName: "ArchGuard",
+  trailingSlash: false,
   onBrokenLinks: "warn",
   markdown: {
     hooks: {
@@ -40,7 +44,7 @@ const config: Config = {
   themeConfig: {
     image: "img/archstandards-social-card.jpg",
     navbar: {
-      title: "ArchStandards",
+      title: "ArchGuard",
       items: [
         {
           type: "docSidebar",
@@ -83,7 +87,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} ArchStandards. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} ArchGuard. Built with Docusaurus.`,
     },
   } satisfies Preset.ThemeConfig,
 };
