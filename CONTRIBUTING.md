@@ -13,8 +13,8 @@ Thank you for your interest in contributing to ArchStandards! This document outl
 
 ```bash
 # Clone the repository
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 # Install dependencies
 pnpm install

@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **Plataforma de governança de arquitetura como código (Policy-as-Code)**: avalia Pull Requests automaticamente de acordo com padrões de engenharia versionados, evita a erosão arquitetural e fornece feedback acionável baseado em árvore de sintaxe abstrata (AST).
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#desempenho-e-benchmarks)
 
 ---
 
-## O que é o ArchGuard?
+## O que é o ArchStandards?
 
 Diretrizes de arquitetura mantidas em wikis ou páginas do Notion frequentemente ficam obsoletas, pois os desenvolvedores raramente dispõem de tempo para cruzar dados manuais durante revisões de código dinâmicas.
 
-O **ArchGuard** preenche essa lacuna transformando seus manuais técnicos em verificações automatizadas de GitHub Checks:
+O **ArchStandards** preenche essa lacuna transformando seus manuais técnicos em verificações automatizadas de GitHub Checks:
 
 - **Análise estática de AST**: Utiliza a API do TypeScript Compiler para inspeção sintática profunda, métricas de métodos/classes e grafo de dependências entre camadas.
 - **Anotações inline no PR**: Insere explicações sobre não conformidades, motivações arquiteturais e sugestões de correção diretamente nas linhas alteradas do diff.
@@ -41,7 +41,7 @@ O **ArchGuard** preenche essa lacuna transformando seus manuais técnicos em ver
     [ Camada Adaptador GitHub ] ── Obtenção de arquivos e diffs (Octokit)
                │
                ▼
-      [ Núcleo ArchGuard Core ] ── Analisadores AST e classificador de arquivos
+      [ Núcleo ArchStandards Core ] ── Analisadores AST e classificador de arquivos
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Aferido no Node.js v22 com cronômetros monotônicos de precisão (`performance.
 ## Estrutura do monorepositório
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### Instalação e compilação
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

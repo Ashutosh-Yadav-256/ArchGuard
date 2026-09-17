@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **Plataforma de gobernanza de arquitectura como código (Policy-as-Code)**: revisa automáticamente los Pull Requests en función de estándares de ingeniería versionados, previene la degradación arquitectónica y ofrece orientación accionable basada en el árbol de sintaxis abstracta (AST).
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#rendimiento-y-benchmarks)
 
 ---
 
-## ¿Qué es ArchGuard?
+## ¿Qué es ArchStandards?
 
 La documentación arquitectónica en wikis y páginas de Notion suele quedar obsoleta con rapidez, ya que los desarrolladores carecen de tiempo para comprobar manualmente normas estáticas durante revisiones de código aceleradas.
 
-**ArchGuard** soluciona esta brecha transformando sus manuales de ingeniería en verificaciones automáticas de GitHub Checks:
+**ArchStandards** soluciona esta brecha transformando sus manuales de ingeniería en verificaciones automáticas de GitHub Checks:
 
 - **Análisis AST estático**: Emplea la API del compilador de TypeScript para inspección sintáctica profunda, métricas de métodos/clases y análisis del grafo de dependencias entre capas.
 - **Anotaciones inline en PR**: Explicaciones detalladas de incumplimientos, justificaciones arquitectónicas y sugerencias de corrección directamente en las líneas del diff.
@@ -41,7 +41,7 @@ La documentación arquitectónica en wikis y páginas de Notion suele quedar obs
     [ Capa Adaptador de GitHub ] ─ Obtención de archivos cambiados y diff (Octokit)
                │
                ▼
-      [ Motor ArchGuard Core ] ─── Parseadores AST y clasificador de archivos
+      [ Motor ArchStandards Core ] ─── Parseadores AST y clasificador de archivos
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Medido empíricamente en Node.js v22 con temporizadores monotónicos de alta pre
 ## Estructura del monorepositorio
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### Instalación y compilación
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

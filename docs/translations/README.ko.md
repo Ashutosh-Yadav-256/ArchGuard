@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **코드형 정책(Policy-as-Code) 아키텍처 거버넌스 플랫폼**: 버전 관리되는 엔지니어링 표준을 기반으로 풀 리퀘스트를 자동 검토하고, 아키텍처 침식을 방지하며, AST 기반의 실행 가능한 피드백을 엔지니어링 팀에 제공합니다.
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#성능-및-벤치마크)
 
 ---
 
-## ArchGuard란 무엇인가요?
+## ArchStandards란 무엇인가요?
 
 위키나 노션의 아키텍처 문서는 빠른 템포의 코드 리뷰 과정에서 간과되기 쉬우며 시간이 지남에 따라 점차 효력을 잃습니다.
 
-**ArchGuard**는 엔지니어링 표준 문서를 지속적이고 자동화된 GitHub Checks로 변환하여 이 간극을 메웁니다:
+**ArchStandards**는 엔지니어링 표준 문서를 지속적이고 자동화된 GitHub Checks로 변환하여 이 간극을 메웁니다:
 
 - **정적 AST 분석**: TypeScript 컴파일러 API를 활용하여 심층 구문 분석, 클래스/메서드 메트릭 및 계층 간 import 관계 그래프를 검사합니다.
 - **인라인 PR 주석**: 위반 사유, 원칙 및 권장 코드 수정안을 변경된 diff 라인에 직접 등록합니다.
@@ -41,7 +41,7 @@
     [ GitHub 어댑터 계층 ] ─── 변경 파일 및 Diff 수신 (Octokit)
                │
                ▼
-      [ ArchGuard 코어 ] ────── AST 파서 및 파일 분류기
+      [ ArchStandards 코어 ] ────── AST 파서 및 파일 분류기
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Node.js v22 환경에서 단조 타이머(`performance.now()`)를 활용한 실�
 ## 모노레포 구조
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### 설치 및 빌드
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

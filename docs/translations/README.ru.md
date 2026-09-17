@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **Платформа архитектурного контроля по модели «Политики как код» (Policy-as-Code)**: автоматическая проверка Pull Request на соответствие версионируемым инженерным стандартам, предотвращение деградации архитектуры и предоставление разработчикам практических рекомендаций на основе анализа AST.
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#производительность-и-бенчмарки)
 
 ---
 
-## Что такое ArchGuard?
+## Что такое ArchStandards?
 
 Архитектурная документация в Wiki или Notion часто устаревает, поскольку в процессе быстрого ревью кода разработчикам сложно сверяться со статическими правилами.
 
-**ArchGuard** решает эту проблему, превращая инженерные правила в автоматизированные проверки GitHub Checks:
+**ArchStandards** решает эту проблему, превращая инженерные правила в автоматизированные проверки GitHub Checks:
 
 - **Статический анализ AST**: Использование TypeScript Compiler API для синтаксической инспекции, метрик классов/методов и построения графа зависимостей между слоями.
 - **Встроенные аннотации в PR**: Добавление пояснений нарушений, архитектурных обоснований и готовых предложений по исправлению прямо в строки диффа.
@@ -41,7 +41,7 @@
     [ Слой адаптера GitHub ] ─── Получение измененных файлов и diff (Octokit)
                │
                ▼
-      [ Ядро ArchGuard ] ─────── AST-парсеры и классификатор файлов
+      [ Ядро ArchStandards ] ─────── AST-парсеры и классификатор файлов
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@
 ## Структура монорепозитория
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### Установка и сборка
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

@@ -1,17 +1,18 @@
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-const baseUrl = process.env["BASE_URL"] ?? (process.env["GITHUB_ACTIONS"] ? "/ArchGuard/" : "/");
+const baseUrl =
+  process.env["BASE_URL"] ?? (process.env["GITHUB_ACTIONS"] ? "/ArchStandards/" : "/");
 const url = process.env["SITE_URL"] ?? "https://Ashutosh-Yadav-256.github.io";
 
 const config: Config = {
-  title: "ArchGuard",
+  title: "ArchStandards",
   tagline: "Policy-as-code architecture governance platform for engineering teams",
   favicon: "img/favicon.ico",
   url,
   baseUrl,
   organizationName: "Ashutosh-Yadav-256",
-  projectName: "ArchGuard",
+  projectName: "ArchStandards",
   trailingSlash: false,
   onBrokenLinks: "warn",
   markdown: {
@@ -44,7 +45,7 @@ const config: Config = {
   themeConfig: {
     image: "img/archstandards-social-card.jpg",
     navbar: {
-      title: "ArchGuard",
+      title: "ArchStandards",
       items: [
         {
           type: "docSidebar",
@@ -53,7 +54,7 @@ const config: Config = {
           label: "Engineering Playbook",
         },
         {
-          href: "https://github.com/Ashutosh-Yadav-256/ArchGuard",
+          href: "https://github.com/Ashutosh-Yadav-256/ArchStandards",
           label: "GitHub",
           position: "right",
         },
@@ -82,12 +83,12 @@ const config: Config = {
         {
           title: "Community",
           items: [
-            { label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/ArchGuard" },
+            { label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/ArchStandards" },
             { label: "Support", href: "mailto:ashutosh4tech@gmail.com" },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} ArchGuard. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} ArchStandards. Built with Docusaurus.`,
     },
   } satisfies Preset.ThemeConfig,
 };

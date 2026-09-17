@@ -1,18 +1,18 @@
 <div align="center">
 
-# ArchGuard
+# ArchStandards
 
 **Policy-as-Code Architecture Governance Platform**
 
 <p align="justify">
-ArchGuard is an automated architecture governance engine that continuously reviews pull requests against a versioned engineering playbook, prevents architectural erosion, and delivers actionable, syntax-aware feedback directly into developer workflows.
+ArchStandards is an automated architecture governance engine that continuously reviews pull requests against a versioned engineering playbook, prevents architectural erosion, and delivers actionable, syntax-aware feedback directly into developer workflows.
 </p>
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-110%20passing-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#performance--benchmarks)
 
 ---
@@ -26,11 +26,11 @@ ArchGuard is an automated architecture governance engine that continuously revie
 ## Executive Summary
 
 <p align="justify">
-Software architecture specifications documented in static wikis, Notion databases, or design documents suffer from systematic documentation rot. In high-throughput engineering teams, manually cross-referencing static architecture documents during peer pull request reviews is error-prone, subjective, and difficult to sustain. ArchGuard eliminates this vulnerability by codifying architectural standards into executable, deterministic policies enforced on every pull request.
+Software architecture specifications documented in static wikis, Notion databases, or design documents suffer from systematic documentation rot. In high-throughput engineering teams, manually cross-referencing static architecture documents during peer pull request reviews is error-prone, subjective, and difficult to sustain. ArchStandards eliminates this vulnerability by codifying architectural standards into executable, deterministic policies enforced on every pull request.
 </p>
 
 <p align="justify">
-By executing deep Abstract Syntax Tree (AST) traversal via the TypeScript Compiler API, ArchGuard validates strict layer separation, prevents cyclic package dependencies, audits API contract consistency, enforces unit testing ratios, and intercepts unencrypted secrets. Findings are reported as native GitHub Check Runs with inline pull request diff annotations, concrete remediation suggestions, and direct links to a living engineering playbook.
+By executing deep Abstract Syntax Tree (AST) traversal via the TypeScript Compiler API, ArchStandards validates strict layer separation, prevents cyclic package dependencies, audits API contract consistency, enforces unit testing ratios, and intercepts unencrypted secrets. Findings are reported as native GitHub Check Runs with inline pull request diff annotations, concrete remediation suggestions, and direct links to a living engineering playbook.
 </p>
 
 ---
@@ -38,7 +38,7 @@ By executing deep Abstract Syntax Tree (AST) traversal via the TypeScript Compil
 ## Core Capabilities
 
 <p align="justify">
-ArchGuard is designed as a platform rather than a simple linter. It operates at the architectural tier, evaluating file roles, layer relationships, and cross-module boundaries across the entire pull request changeset.
+ArchStandards is designed as a platform rather than a simple linter. It operates at the architectural tier, evaluating file roles, layer relationships, and cross-module boundaries across the entire pull request changeset.
 </p>
 
 - **Static Abstract Syntax Tree Analysis**: Inspects class declarations, decorator metadata, method length metrics, and import declarations using the official TypeScript Compiler API (`ts.createSourceFile`).
@@ -62,7 +62,7 @@ ArchGuard is designed as a platform rather than a simple linter. It operates at 
      [ GitHub Adapter Subsystem ] ─────── Fetches Changed Files & Diffs (Octokit)
                     │
                     ▼
-       [ ArchGuard Core Engine ] ──────── File Classification & AST Generation
+       [ ArchStandards Core Engine ] ──────── File Classification & AST Generation
                     │
           ┌─────────┴─────────┐
           ▼                   ▼
@@ -85,7 +85,7 @@ The engine follows hexagonal architecture principles. All parsing, evaluation, s
 ## The 18 Rule Catalog
 
 <p align="justify">
-ArchGuard ships with eighteen built-in rules organized across five critical software engineering domains:
+ArchStandards ships with eighteen built-in rules organized across five critical software engineering domains:
 </p>
 
 | Domain            | Rule ID    | Specification                                              | Severity  | Remediation Target                                     |
@@ -114,7 +114,7 @@ ArchGuard ships with eighteen built-in rules organized across five critical soft
 ## Abstract Syntax Tree (AST) Internals
 
 <p align="justify">
-Unlike string-based pattern matchers, ArchGuard parses TypeScript source text into full syntax trees via <code>ts.createSourceFile</code>. This enables contextual verification impossible with regular expressions:
+Unlike string-based pattern matchers, ArchStandards parses TypeScript source text into full syntax trees via <code>ts.createSourceFile</code>. This enables contextual verification impossible with regular expressions:
 </p>
 
 - **Contextual Node Traversal**: Examines specific AST node kinds (e.g., `ts.SyntaxKind.ImportDeclaration`, `ts.SyntaxKind.MethodDeclaration`, `ts.SyntaxKind.ClassDeclaration`).
@@ -148,7 +148,7 @@ Audited and benchmarked on Node.js v22 using monotonic timers (<code>performance
 ## Monorepo Layout
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/          Fastify webhook ingestion and review orchestrator
 │   └── docs/                Docusaurus engineering playbook and rule catalog
@@ -175,8 +175,8 @@ ArchGuard/
 ### Installation & Build
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 pnpm install
 pnpm build
 pnpm test
@@ -195,7 +195,7 @@ pnpm --filter @archstandards/docs start
 ## Declarative Configuration
 
 <p align="justify">
-ArchGuard is configured in the root of target repositories via <code>.archstandards/config.yaml</code>. The schema is validated at runtime using Zod:
+ArchStandards is configured in the root of target repositories via <code>.archstandards/config.yaml</code>. The schema is validated at runtime using Zod:
 </p>
 
 ```yaml
@@ -244,7 +244,7 @@ Where <code>E</code> represents error findings, <code>W</code> represents warnin
 ## Security Model
 
 <p align="justify">
-ArchGuard is architected with strict security-by-default principles:
+ArchStandards is architected with strict security-by-default principles:
 </p>
 
 - **HMAC SHA-256 Validation**: Webhook payloads are verified against the configured secret using `crypto.timingSafeEqual` before parsing, preventing timing attacks and unauthorized request spoofing.
@@ -258,7 +258,7 @@ ArchGuard is architected with strict security-by-default principles:
 ## Global Deployment
 
 - **Webhook Service (`apps/github-app`)**: Containerized via the root [Dockerfile](Dockerfile) for zero-configuration deployment to Render, Railway, Fly.io, or Google Cloud Run.
-- **Playbook Documentation (`apps/docs`)**: Automated continuous deployment via [.github/workflows/deploy-docs.yml](.github/workflows/deploy-docs.yml) to GitHub Pages at [https://Ashutosh-Yadav-256.github.io/ArchGuard/](https://Ashutosh-Yadav-256.github.io/ArchGuard/).
+- **Playbook Documentation (`apps/docs`)**: Automated continuous deployment via [.github/workflows/deploy-docs.yml](.github/workflows/deploy-docs.yml) to GitHub Pages at [https://Ashutosh-Yadav-256.github.io/ArchStandards/](https://Ashutosh-Yadav-256.github.io/ArchStandards/).
 
 ---
 

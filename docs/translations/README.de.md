@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **Policy-as-Code Plattform für Architektur-Governance**: Überprüft Pull Requests automatisch anhand versionierter Engineering-Richtlinien, verhindert Architekturerosion und bietet Entwicklungsteams umsetzbare, AST-basierte Empfehlungen.
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#leistung-und-benchmarks)
 
 ---
 
-## Was ist ArchGuard?
+## Was ist ArchStandards?
 
 Architekturdokumentationen in Wikis oder Notion veralten häufig, da Entwickler während schneller Code-Reviews kaum Zeit haben, statische Vorgaben manuell zu prüfen.
 
-**ArchGuard** schließt diese Lücke, indem es Architekturrichtlinien in automatisierte, kontinuierliche GitHub Checks verwandelt:
+**ArchStandards** schließt diese Lücke, indem es Architekturrichtlinien in automatisierte, kontinuierliche GitHub Checks verwandelt:
 
 - **Statische AST-Analyse**: Nutzt die TypeScript Compiler API für Syntaxprüfungen, Klassen- und Methodenmetriken sowie Importgraphen über Architekturebenen hinweg.
 - **Inline PR-Annotationen**: Zeigt Regelverletzungen, architektonische Begründungen und Lösungsvorschläge direkt an den betroffenen Codezeilen an.
@@ -41,7 +41,7 @@ Architekturdokumentationen in Wikis oder Notion veralten häufig, da Entwickler 
     [ GitHub Adapter-Schicht ] ─ Abrufen geänderter Dateien & Diffs (Octokit)
                │
                ▼
-      [ ArchGuard Core ] ─────── AST-Parser und Dateiklassifizierer
+      [ ArchStandards Core ] ─────── AST-Parser und Dateiklassifizierer
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Gemessen unter Node.js v22 mit hochpräzisen Zeitgebern (`performance.now()`):
 ## Monorepo-Struktur
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### Installation & Build
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **पॉलिसी-एज-कोड आर्किटेक्चर गवर्नेंस प्लेटफॉर्म**: संस्करण-नियंत्रित इंजीनियरिंग मानकों के आधार पर पुल रिक्वेस्ट्स की स्वचालित समीक्षा करता है, सॉफ़्टवेयर आर्किटेक्चर के क्षरण को रोकता है, और अमूर्त सिंटैक्स ट्री (AST) पर आधारित व्यावहारिक मार्गदर्शन प्रदान करता है।
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#प्रदर्शन-और-बेंचमार्क)
 
 ---
 
-## ArchGuard क्या है?
+## ArchStandards क्या है?
 
 विकी और नोशन पृष्ठों में दर्ज सिस्टम आर्किटेक्चर दस्तावेज़ अक्सर पुराने पड़ जाते हैं, क्योंकि तेज़ गति वाली कोड समीक्षाओं के दौरान डेवलपर्स के पास स्थिर दस्तावेज़ों की मैन्युअल जाँच करने का समय नहीं होता।
 
-**ArchGuard** इंजीनियरिंग मानकों को स्वचालित और निरंतर GitHub Checks में बदलकर इस अंतर को समाप्त करता है:
+**ArchStandards** इंजीनियरिंग मानकों को स्वचालित और निरंतर GitHub Checks में बदलकर इस अंतर को समाप्त करता है:
 
 - **स्टैटिक AST विश्लेषण**: सिंटैक्स निरीक्षण, क्लास/मेथड मेट्रिक्स और लेयर-टू-लेयर निर्भरता संबंधों के लिए आधिकारिक TypeScript कम्पाइलर API का उपयोग।
 - **इनलाइन PR एनोटेशन**: सटीक उल्लंघन कारण और अनुशंसित कोड सुधार सीधे संशोधित लाइनों पर प्रस्तुत किए जाते हैं।
@@ -41,7 +41,7 @@
     [ GitHub एडेप्टर लेयर ] ─── बदले हुए फाइल्स और Diff प्राप्त करना (Octokit)
                │
                ▼
-      [ ArchGuard कोर इंजन ] ── AST पार्सर और फ़ाइल क्लासिफायर
+      [ ArchStandards कोर इंजन ] ── AST पार्सर और फ़ाइल क्लासिफायर
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Node.js v22 पर उच्च-सटीकता टाइमर (`performance
 ## मोनोरिपो संरचना
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### संस्थापना और निर्माण
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

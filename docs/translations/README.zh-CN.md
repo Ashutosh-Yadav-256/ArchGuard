@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **策略即代码架构治理平台**：依据版本化的工程规范自动化审查 Pull Request，防止架构退化，并通过基于抽象语法树（AST）的可执行反馈指导工程团队。
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#性能与基准测试)
 
 ---
 
-## 什么是 ArchGuard？
+## 什么是 ArchStandards？
 
 Wiki 和 Notion 文档中的系统架构设计规范容易随着时间推移而过时失效，因为在节奏紧张的代码审查中，开发者很难手动比对静态文档。
 
-**ArchGuard** 通过将工程规范转变为自动化的持续 GitHub Checks 填补了这一空白：
+**ArchStandards** 通过将工程规范转变为自动化的持续 GitHub Checks 填补了这一空白：
 
 - **静态 AST 分析**：使用 TypeScript 编译器 API 执行深层语法检查、类与方法度量分析以及跨层依赖导入图分析。
 - **PR 差异内联批注**：将具体的违规解释、设计原由和修复建议精准附加到变更的代码行上。
@@ -41,7 +41,7 @@ Wiki 和 Notion 文档中的系统架构设计规范容易随着时间推移而�
     [ GitHub 适配层 ] ──────── 获取变更文件与 Diff (Octokit)
                │
                ▼
-      [ ArchGuard 核心引擎 ] ─ AST 解析器与文件分类器
+      [ ArchStandards 核心引擎 ] ─ AST 解析器与文件分类器
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -105,7 +105,7 @@ Wiki 和 Notion 文档中的系统架构设计规范容易随着时间推移而�
 ## 项目单体仓库结构
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -131,8 +131,8 @@ ArchGuard/
 ### 安装与构建
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

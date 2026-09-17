@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **منصة حوكمة البنية البرمجية عبر السياسات ككود (Policy-as-Code)**: مراجعة طلبات السحب (Pull Requests) تلقائيًا بناءً على معايير هندسية محددة الإصدار، وحماية البنية البرمجية من التدهور، وتقديم توجيهات عملية مدعومة بشجرة القواعد المجردة (AST).
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#الأداء-والاختبارات-المرجعية)
 
 ---
 
-## ما هو ArchGuard؟
+## ما هو ArchStandards؟
 
 غالبًا ما تصبح توثيقات البنية البرمجية المحفوظة في صفحات Wiki أو Notion غير مواكبة للواقع، نظرًا لضيق وقت المطورين لمطابقة القواعد الثابتة يدويًا أثناء المراجعات السريعة للكود.
 
-يعالج **ArchGuard** هذه الفجوة بتحويل المعايير الهندسية إلى فحوصات آلية مستمرة عبر GitHub Checks:
+يعالج **ArchStandards** هذه الفجوة بتحويل المعايير الهندسية إلى فحوصات آلية مستمرة عبر GitHub Checks:
 
 - **التحليل الثابت عبر AST**: توظيف واجهة برمجة مترجم TypeScript لإجراء فحص لغوي متعمق، وقياس حجم الدوال والفئات، وبناء مخططات الاستيراد بين الطبقات.
 - **ملاحظات مدمجة داخل سطور PR**: توضيح المخالفات والأسباب الهندسية وتقديم مقترحات التصحيح البرمجية مباشرة على سطور التعديل.
@@ -41,7 +41,7 @@
     [ طبقة وسيط GitHub ] ─────── جلب الملفات المعدلة والفروقات (Octokit)
                │
                ▼
-      [ محرك ArchGuard الأساسي ] ─ محللات AST ومصنف الملفات
+      [ محرك ArchStandards الأساسي ] ─ محللات AST ومصنف الملفات
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@
 ## تخطيط المستودع
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### التثبيت والبناء
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 

@@ -2,24 +2,24 @@
 
 ---
 
-# ArchGuard
+# ArchStandards
 
 > **Plateforme de gouvernance d'architecture en Policy-as-Code** : analyse automatiquement les Pull Requests par rapport à des standards d'ingénierie versionnés, prévient l'érosion architecturale et fournit aux équipes de développement des retours exploitables basés sur l'arbre syntaxique abstrait (AST).
 
-[![CI](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchGuard/actions/workflows/ci.yml)
+[![CI](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashutosh-Yadav-256/ArchStandards/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-116%20passed-brightgreen)](https://vitest.dev/)
-[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchGuard)
+[![Coverage](https://img.shields.io/badge/Coverage-83.7%25-brightgreen)](https://github.com/Ashutosh-Yadav-256/ArchStandards)
 [![Throughput](https://img.shields.io/badge/Parser%20Speed-145k%20lines%2Fs-orange)](#performances-et-benchmarks)
 
 ---
 
-## Qu'est-ce qu'ArchGuard ?
+## Qu'est-ce qu'ArchStandards ?
 
 La documentation architecturale consignée dans des wikis ou des pages Notion devient souvent obsolète, car les développeurs manquent de temps pour recouper manuellement ces règles statiques lors des revues de code rapides.
 
-**ArchGuard** comble ce fossé en transformant votre guide d'ingénierie en vérifications GitHub Checks automatisées :
+**ArchStandards** comble ce fossé en transformant votre guide d'ingénierie en vérifications GitHub Checks automatisées :
 
 - **Analyse AST statique** : Utilise l'API du compilateur TypeScript pour l'inspection syntaxique approfondie, le calcul des métriques de méthodes/classes et les graphes d'importation entre couches.
 - **Annotations inline sur la PR** : Épinglage des explications, des principes directeurs et des suggestions de correctifs directement sur les lignes modifiées.
@@ -41,7 +41,7 @@ La documentation architecturale consignée dans des wikis ou des pages Notion de
     [ Couche Adaptateur GitHub ] ─ Récupération des fichiers et diffs (Octokit)
                │
                ▼
-      [ Moteur ArchGuard Core ] ── Parseurs AST et classificateur de fichiers
+      [ Moteur ArchStandards Core ] ── Parseurs AST et classificateur de fichiers
                │
         ┌──────┴──────┐
         ▼             ▼
@@ -103,7 +103,7 @@ Mesures effectuées sur Node.js v22 avec minuteurs de haute précision (`perform
 ## Structure du monorepo
 
 ```text
-ArchGuard/
+ArchStandards/
 ├── apps/
 │   ├── github-app/
 │   └── docs/
@@ -129,8 +129,8 @@ ArchGuard/
 ### Installation et compilation
 
 ```bash
-git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
-cd ArchGuard
+git clone https://github.com/Ashutosh-Yadav-256/ArchStandards.git
+cd ArchStandards
 
 pnpm install
 
