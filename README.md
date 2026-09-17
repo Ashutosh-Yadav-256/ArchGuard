@@ -11,6 +11,10 @@
 
 ---
 
+[English](README.md) | [简体中文](docs/translations/README.zh-CN.md) | [日本語](docs/translations/README.ja.md) | [한국어](docs/translations/README.ko.md) | [Русский](docs/translations/README.ru.md) | [Français](docs/translations/README.fr.md) | [हिन्दी](docs/translations/README.hi.md) | [Español](docs/translations/README.es.md) | [Deutsch](docs/translations/README.de.md) | [Português](docs/translations/README.pt.md) | [العربية](docs/translations/README.ar.md)
+
+---
+
 ## What Is ArchGuard?
 
 Architecture documentation in wikis and Notion pages rots because nobody has time to cross-reference static markdown during fast-paced pull request reviews.
@@ -79,25 +83,6 @@ ArchGuard ships with 18 built-in rules across five critical engineering domains:
 | **Naming**        | `NAME-001` | Classes and interfaces must use PascalCase                                        | `info`           |
 |                   | `NAME-002` | Functions and class methods must use camelCase                                    | `info`           |
 |                   | `NAME-003` | Boolean variables and properties must use affirmative prefixes (`is`/`has`/`can`) | `info`           |
-
----
-
-## Supported Languages & Ecosystems
-
-ArchGuard is designed with a pluggable parser and rule architecture supporting 10 major programming languages and modern application frameworks:
-
-| Language       | File Extensions       | Key Architectural Standards Enforced                                                                   | Status |
-| :------------- | :-------------------- | :----------------------------------------------------------------------------------------------------- | :----- |
-| **TypeScript** | `.ts`, `.tsx`         | 3-tier layering, circular dependency graphs, service boundary decoupling, AST method metrics           | Active |
-| **JavaScript** | `.js`, `.jsx`, `.mjs` | Module import boundaries, input validation enforcement, secret detection, naming conventions           | Active |
-| **Python**     | `.py`                 | Layered package imports (FastAPI/Django/Flask), PEP-8 conventions, circular imports, hardcoded configs | Active |
-| **Go**         | `.go`                 | Clean architecture boundaries, domain/repository decoupling, interface compliance, error handling      | Active |
-| **Java**       | `.java`               | Spring Boot Controller/Service/Repository separation, DTO boundary leakage, JUnit requirements         | Active |
-| **C# / .NET**  | `.cs`                 | Clean Architecture layer contracts (Controllers -> Application -> Domain), async naming conventions    | Active |
-| **Rust**       | `.rs`                 | Crate & module hierarchy rules, unsafe block audits, public API surface documentation                  | Active |
-| **Kotlin**     | `.kt`, `.kts`         | Android & backend service isolation, coroutine safety, immutability & naming standards                 | Active |
-| **PHP**        | `.php`                | Laravel & Symfony MVC separation, repository boundaries, PSR standards, raw SQL detection              | Active |
-| **Ruby**       | `.rb`                 | Rails fat controller prevention, service object boundaries, database migration secrets                 | Active |
 
 ---
 
