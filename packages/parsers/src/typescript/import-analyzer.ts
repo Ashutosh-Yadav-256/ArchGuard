@@ -7,7 +7,8 @@ import type { ImportInfo } from "./ts-parser.js";
 /**
  * Layer classification for imports.
  */
-export type ArchitecturalLayer = "controller" | "service" | "repository" | "model" | "util" | "unknown";
+export type ArchitecturalLayer =
+  "controller" | "service" | "repository" | "model" | "util" | "unknown";
 
 /**
  * Checks if any imports reference modules from a specific architectural layer.

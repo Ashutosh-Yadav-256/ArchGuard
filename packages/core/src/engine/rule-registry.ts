@@ -17,9 +17,7 @@ export class RuleRegistry {
    */
   register(rule: Rule): void {
     if (this.rules.has(rule.id)) {
-      throw new Error(
-        `Rule "${rule.id}" is already registered. Rule IDs must be unique.`,
-      );
+      throw new Error(`Rule "${rule.id}" is already registered. Rule IDs must be unique.`);
     }
     this.rules.set(rule.id, rule);
   }

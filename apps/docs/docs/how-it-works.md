@@ -43,6 +43,7 @@ sequenceDiagram
 When a developer creates or pushes commits to a pull request, GitHub sends a `pull_request.opened` or `pull_request.synchronize` webhook event to the ArchStandards endpoint.
 
 ### Cryptographic Signature Verification
+
 Every inbound payload is verified using HMAC-SHA256 over the raw request payload buffer using your configured `GITHUB_WEBHOOK_SECRET`:
 
 ```typescript
@@ -61,7 +62,9 @@ Using `crypto.timingSafeEqual` prevents timing attacks, guaranteeing that unauth
 The GitHub Adapter uses Octokit authenticated as a GitHub App installation to retrieve the pull request metadata and changed files.
 
 ### File Heuristics & Classification
+
 Each changed file is categorized into a `ReviewFile` model with:
+
 - **Path & Name**: Normalized cross-platform path.
 - **Language**: Determined by extension (`.ts`, `.js`, `.yaml`, `.json`).
 - **File Type**: Categorized as `service`, `controller`, `repository`, `test`, `config`, or `model` based on directory structure and filename patterns:
@@ -94,6 +97,7 @@ exceptions:
 ```
 
 ### Exception Resolution
+
 1. **Rule ID Matching**: Matches exact rule ID (e.g., `ARCH-001`).
 2. **Glob Pattern Matching**: Evaluates path globs (e.g. `src/legacy/**`).
 3. **Expiration Dates**: If an exception specifies an `expires` date and the current date exceeds it, the exception is invalidated automatically.
@@ -120,12 +124,12 @@ Score = Math.max(0, 100 - (errors * 15) - (warnings * 5) - (infos * 1))
 
 ### Decision Matrix
 
-| Condition | Check Run Conclusion | Merge Status |
-|---|---|---|
-| Any `error` severity finding | `failure` | Blocked |
-| Health Score < 80 | `failure` | Blocked |
+| Condition                              | Check Run Conclusion   | Merge Status            |
+| -------------------------------------- | ---------------------- | ----------------------- |
+| Any `error` severity finding           | `failure`              | Blocked                 |
+| Health Score < 80                      | `failure`              | Blocked                 |
 | Only `warning` / `info` and Score ≥ 80 | `neutral` or `success` | Allowed with advisories |
-| Zero findings (Score = 100) | `success` | Approved |
+| Zero findings (Score = 100)            | `success`              | Approved                |
 
 ---
 
@@ -135,4 +139,4 @@ ArchStandards creates a comprehensive GitHub Check Run directly linked to the co
 
 1. **Inline Annotations**: Findings with exact line numbers are posted directly onto the GitHub PR Diff as native annotations with error messages, rationales, and suggestions.
 2. **Markdown Summary**: A formatted summary table details the architecture score, total violations by severity, and rule breakdown.
-3. **Educational Links**: Every violation links directly to the corresponding rule page in this documentation playbook, explaining *why* the standard exists and *how* to remediate it.
+3. **Educational Links**: Every violation links directly to the corresponding rule page in this documentation playbook, explaining _why_ the standard exists and _how_ to remediate it.

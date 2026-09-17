@@ -37,7 +37,7 @@ function calculateStats(timingsMs: number[]): LatencyStats {
   const p50Ms = timingsMs[Math.floor(len * 0.5)] ?? 0;
   const p95Ms = timingsMs[Math.floor(len * 0.95)] ?? 0;
   const p99Ms = timingsMs[Math.floor(len * 0.99)] ?? 0;
-  const opsPerSec = totalMs > 0 ? (len / (totalMs / 1000)) : 0;
+  const opsPerSec = totalMs > 0 ? len / (totalMs / 1000) : 0;
 
   return {
     iterations: len,
@@ -55,14 +55,17 @@ function calculateStats(timingsMs: number[]): LatencyStats {
 // ─── Synthetic File Generators ────────────────────────────────
 
 function generateSyntheticService(methodsCount: number, linesPerMethod: number): string {
-  const methodCode = Array.from({ length: methodsCount }, (_, i) => `
+  const methodCode = Array.from(
+    { length: methodsCount },
+    (_, i) => `
   calculateMetric${i}(paramA: number, paramB: string): boolean {
     const isReady = paramA > 0;
     const hasData = paramB.length > 0;
     let sum = 0;
     ${Array.from({ length: Math.max(1, linesPerMethod - 4) }, (_, j) => `sum += ${j};`).join("\n    ")}
     return isReady && hasData && sum > 0;
-  }`).join("\n");
+  }`,
+  ).join("\n");
 
   return `
 import { Injectable } from "@nestjs/common";
@@ -74,7 +77,9 @@ ${methodCode}
 }
 
 function generateSyntheticController(routeCount: number): string {
-  const routes = Array.from({ length: routeCount }, (_, i) => `
+  const routes = Array.from(
+    { length: routeCount },
+    (_, i) => `
 router.post("/items/${i}", async (req, res) => {
   const item = await itemService.create(req.body);
   return res.status(201).json(item);
@@ -82,7 +87,8 @@ router.post("/items/${i}", async (req, res) => {
 router.get("/items/${i}", async (req, res) => {
   const item = await itemService.find(req.params.id);
   return res.status(200).json(item);
-});`).join("\n");
+});`,
+  ).join("\n");
 
   return `
 import { Router } from "express";
@@ -107,7 +113,9 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
     ];
 
     console.log("\n### 1. TypeScript AST Parser Performance");
-    console.log("| File Size | Lines | Mean (ms) | p50 (ms) | p95 (ms) | p99 (ms) | Throughput (lines/sec) |");
+    console.log(
+      "| File Size | Lines | Mean (ms) | p50 (ms) | p95 (ms) | p99 (ms) | Throughput (lines/sec) |",
+    );
     console.log("|---|---|---|---|---|---|---|");
 
     for (const { label, methods, linesPerMethod } of fileSizes) {
@@ -126,7 +134,9 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
 
       const s = calculateStats(timings);
       const linesPerSec = Math.round((lineCount * s.iterations) / (s.totalMs / 1000));
-      console.log(`| ${label} | ${lineCount} | ${s.meanMs.toFixed(2)} | ${s.p50Ms.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.p99Ms.toFixed(2)} | ${linesPerSec.toLocaleString()} |`);
+      console.log(
+        `| ${label} | ${lineCount} | ${s.meanMs.toFixed(2)} | ${s.p50Ms.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.p99Ms.toFixed(2)} | ${linesPerSec.toLocaleString()} |`,
+      );
 
       expect(s.meanMs).toBeLessThan(150); // Under 150ms even for 5000 lines
     }
@@ -161,7 +171,10 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
     const ruleStats: Array<{ id: string; category: string; stats: LatencyStats }> = [];
 
     for (const rule of allRules) {
-      const file = sampleFiles.find((f) => rule.applies({ file: f, allFiles: sampleFiles, config: DEFAULT_CONFIG })) ?? sampleFiles[0]!;
+      const file =
+        sampleFiles.find((f) =>
+          rule.applies({ file: f, allFiles: sampleFiles, config: DEFAULT_CONFIG }),
+        ) ?? sampleFiles[0]!;
       const iterations = 200;
       const timings: number[] = [];
 
@@ -180,7 +193,9 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
 
     ruleStats.sort((a, b) => b.stats.meanMs - a.stats.meanMs);
     for (const { id, category, stats: s } of ruleStats) {
-      console.log(`| ${id} | ${category} | ${s.meanMs.toFixed(3)} | ${s.p50Ms.toFixed(3)} | ${s.p95Ms.toFixed(3)} | ${s.p99Ms.toFixed(3)} | ${Math.round(s.opsPerSec).toLocaleString()} |`);
+      console.log(
+        `| ${id} | ${category} | ${s.meanMs.toFixed(3)} | ${s.p50Ms.toFixed(3)} | ${s.p95Ms.toFixed(3)} | ${s.p99Ms.toFixed(3)} | ${Math.round(s.opsPerSec).toLocaleString()} |`,
+      );
     }
   });
 
@@ -239,7 +254,14 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
       for (let i = 0; i < iterations; i++) {
         const start = performance.now();
         const report = pipeline.execute(
-          { owner: "bench", repo: "test", pullNumber: 1, commitSha: "abc", installationId: 1, files },
+          {
+            owner: "bench",
+            repo: "test",
+            pullNumber: 1,
+            commitSha: "abc",
+            installationId: 1,
+            files,
+          },
           DEFAULT_CONFIG,
         );
         timings.push(performance.now() - start);
@@ -250,7 +272,9 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
       }
 
       const s = calculateStats(timings);
-      console.log(`| ${w.label} | ${files.length} | ${totalLines} | ${s.meanMs.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${findingsCount} | ${score}/100 |`);
+      console.log(
+        `| ${w.label} | ${files.length} | ${totalLines} | ${s.meanMs.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${findingsCount} | ${score}/100 |`,
+      );
       expect(s.meanMs).toBeLessThan(1000); // Monorepo 100-file PR completes in under 1 second!
     }
   }, 30000);
@@ -298,7 +322,9 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
     console.log(`- Peak Heap:     ${peak.toFixed(2)} MB`);
     console.log(`- Post-Run Heap: ${postRun.toFixed(2)} MB`);
     console.log(`- Retained Heap: ${delta.toFixed(2)} MB`);
-    console.log(`- Leak Status:   ${delta < 30 ? "✅ Clean (No Memory Leak)" : "⚠️ High Retained Memory"}`);
+    console.log(
+      `- Leak Status:   ${delta < 30 ? "✅ Clean (No Memory Leak)" : "⚠️ High Retained Memory"}`,
+    );
 
     expect(delta).toBeLessThan(40);
   });
@@ -379,9 +405,15 @@ describe("ArchStandards Real-World Performance & Benchmark Suite", () => {
     const tamperedStats = calculateStats(tamperedTimings);
 
     console.log("\n### 5. Fastify Webhook Latency");
-    console.log(`- /health:            Mean: ${healthStats.meanMs.toFixed(3)}ms (p95: ${healthStats.p95Ms.toFixed(3)}ms, ${Math.round(healthStats.opsPerSec)} req/s)`);
-    console.log(`- Valid Webhook HMAC:  Mean: ${validStats.meanMs.toFixed(3)}ms (p95: ${validStats.p95Ms.toFixed(3)}ms, ${Math.round(validStats.opsPerSec)} req/s)`);
-    console.log(`- Tampered HMAC (401): Mean: ${tamperedStats.meanMs.toFixed(3)}ms (p95: ${tamperedStats.p95Ms.toFixed(3)}ms, ${Math.round(tamperedStats.opsPerSec)} req/s)`);
+    console.log(
+      `- /health:            Mean: ${healthStats.meanMs.toFixed(3)}ms (p95: ${healthStats.p95Ms.toFixed(3)}ms, ${Math.round(healthStats.opsPerSec)} req/s)`,
+    );
+    console.log(
+      `- Valid Webhook HMAC:  Mean: ${validStats.meanMs.toFixed(3)}ms (p95: ${validStats.p95Ms.toFixed(3)}ms, ${Math.round(validStats.opsPerSec)} req/s)`,
+    );
+    console.log(
+      `- Tampered HMAC (401): Mean: ${tamperedStats.meanMs.toFixed(3)}ms (p95: ${tamperedStats.p95Ms.toFixed(3)}ms, ${Math.round(tamperedStats.opsPerSec)} req/s)`,
+    );
   });
 
   it("verifies test corpus detection accuracy and false positive rate", () => {

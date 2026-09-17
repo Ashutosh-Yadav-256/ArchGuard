@@ -13,6 +13,7 @@ High-level modules must not depend on low-level modules; both should depend on a
 ### Direction of Dependencies
 
 Dependencies must always point inwards towards business domains:
+
 - **Presentation → Business Domain**
 - **Persistence → Business Domain** (via Interfaces)
 - **Infrastructure → Business Domain** (via Interfaces)

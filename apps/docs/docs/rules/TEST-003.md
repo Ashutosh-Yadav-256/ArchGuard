@@ -6,10 +6,10 @@ sidebar_label: TEST-003
 
 # TEST-003: Minimum Test Coverage Threshold
 
-| Attribute | Value |
-|---|---|
-| **Category** | Testing Standards |
-| **Default Severity** | `warning` |
+| Attribute            | Value                      |
+| -------------------- | -------------------------- |
+| **Category**         | Testing Standards          |
+| **Default Severity** | `warning`                  |
 | **Applicable Files** | Service & Controller files |
 
 ## Why It Exists (Rationale)

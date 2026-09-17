@@ -50,10 +50,7 @@ export class ReviewOrchestrator {
         installationId,
       });
 
-      logger?.info(
-        { filesCount: reviewContext.files.length },
-        "Fetched and classified PR files",
-      );
+      logger?.info({ filesCount: reviewContext.files.length }, "Fetched and classified PR files");
 
       // 3. Load repository configuration (or default)
       const config = await loadRepoConfig(octokit, owner, repo, headSha);

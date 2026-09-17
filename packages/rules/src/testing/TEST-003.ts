@@ -15,8 +15,7 @@ export const TEST003: Rule = {
   name: "Minimum test coverage threshold",
   category: "testing",
   severity: "warning",
-  description:
-    "The project should maintain a minimum test coverage threshold of 80%.",
+  description: "The project should maintain a minimum test coverage threshold of 80%.",
   documentationUrl: "https://docs.archstandards.dev/rules/TEST-003",
 
   applies(context: RuleContext): boolean {

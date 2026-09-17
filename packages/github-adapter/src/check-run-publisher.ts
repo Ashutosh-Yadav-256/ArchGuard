@@ -1,6 +1,10 @@
 import type { Octokit } from "octokit";
 import type { ReviewReport } from "@archstandards/core";
-import { formatCheckRunConclusion, formatSummaryComment, formatInlineComment } from "./comment-formatter.js";
+import {
+  formatCheckRunConclusion,
+  formatSummaryComment,
+  formatInlineComment,
+} from "./comment-formatter.js";
 
 export interface CreateCheckRunParams {
   owner: string;

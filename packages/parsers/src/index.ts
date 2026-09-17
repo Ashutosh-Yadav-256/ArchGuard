@@ -16,9 +16,5 @@ export {
 } from "./typescript/import-analyzer.js";
 export type { ArchitecturalLayer } from "./typescript/import-analyzer.js";
 
-export {
-  classifyFile,
-  detectLanguage,
-  isAnalyzableFile,
-} from "./file-classifier.js";
+export { classifyFile, detectLanguage, isAnalyzableFile } from "./file-classifier.js";
 export type { FileClassification } from "./file-classifier.js";

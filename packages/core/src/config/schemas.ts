@@ -9,23 +9,14 @@ import { z } from "zod";
 
 export const SeveritySchema = z.enum(["info", "warning", "error"]);
 
-export const RuleCategorySchema = z.enum([
-  "architecture",
-  "api",
-  "testing",
-  "security",
-  "naming",
-]);
+export const RuleCategorySchema = z.enum(["architecture", "api", "testing", "security", "naming"]);
 
 // ─── Rule Definition (from policy YAML) ────────────────────────
 
 export const RuleDefinitionSchema = z.object({
   id: z
     .string()
-    .regex(
-      /^[A-Z]+-\d{3}$/,
-      "Rule ID must match pattern: CATEGORY-NNN (e.g., ARCH-001)",
-    ),
+    .regex(/^[A-Z]+-\d{3}$/, "Rule ID must match pattern: CATEGORY-NNN (e.g., ARCH-001)"),
   name: z.string().min(1),
   category: RuleCategorySchema,
   severity: SeveritySchema,
@@ -43,9 +34,7 @@ export const RulePolicyFileSchema = z.object({
 // ─── Exception Definition ──────────────────────────────────────
 
 export const ExceptionSchema = z.object({
-  rule: z
-    .string()
-    .regex(/^[A-Z]+-\d{3}$/, "Exception rule ID must match pattern: CATEGORY-NNN"),
+  rule: z.string().regex(/^[A-Z]+-\d{3}$/, "Exception rule ID must match pattern: CATEGORY-NNN"),
   path: z.string().min(1),
   reason: z.string().min(1),
   expires: z.string().optional(),

@@ -24,10 +24,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   const app = Fastify({
     logger: options.logger ?? {
       level: process.env["LOG_LEVEL"] ?? "info",
-      transport:
-        process.env["NODE_ENV"] === "development"
-          ? { target: "pino-pretty" }
-          : undefined,
+      transport: process.env["NODE_ENV"] === "development" ? { target: "pino-pretty" } : undefined,
     },
   });
 
@@ -62,8 +59,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   app.get("/", async () => {
     return {
       name: "ArchStandards",
-      description:
-        "Policy-as-code architecture governance platform that reviews pull requests",
+      description: "Policy-as-code architecture governance platform that reviews pull requests",
       version: "0.1.0",
       docs: "https://docs.archstandards.dev",
       rulesCount: registry.getAll().length,

@@ -77,9 +77,7 @@ const config: Config = {
         },
         {
           title: "Community",
-          items: [
-            { label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/archstandards" },
-          ],
+          items: [{ label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/archstandards" }],
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} ArchStandards. Built with Docusaurus.`,

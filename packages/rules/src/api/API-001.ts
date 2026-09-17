@@ -67,7 +67,8 @@ export const API001: Rule = {
                 rationale:
                   "Catch blocks handle errors — they should return error status codes (4xx/5xx), " +
                   "not 200. Using 200 for errors hides failures from monitoring systems.",
-                suggestion: "Use status 500 for unexpected errors, or a specific 4xx code if the error is client-related.",
+                suggestion:
+                  "Use status 500 for unexpected errors, or a specific 4xx code if the error is client-related.",
                 documentationUrl: this.documentationUrl,
               }),
             );

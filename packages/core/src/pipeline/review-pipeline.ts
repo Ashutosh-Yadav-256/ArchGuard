@@ -71,11 +71,7 @@ export class ReviewPipeline {
 
       // Apply exceptions to findings
       for (const finding of result.totalFindings) {
-        const exceptionMatch = checkException(
-          finding.ruleId,
-          finding.file,
-          config.exceptions,
-        );
+        const exceptionMatch = checkException(finding.ruleId, finding.file, config.exceptions);
 
         if (exceptionMatch.matched) {
           // Finding is exempted — record it but don't include in violations

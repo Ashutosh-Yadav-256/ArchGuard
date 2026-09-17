@@ -1,7 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { RuleRegistry, ReviewPipeline, DEFAULT_CONFIG, type ReviewFile, type ReviewReport } from "@archstandards/core";
+import {
+  RuleRegistry,
+  ReviewPipeline,
+  DEFAULT_CONFIG,
+  type ReviewFile,
+  type ReviewReport,
+} from "@archstandards/core";
 import { allRules } from "@archstandards/rules";
 import { classifyFile, detectLanguage } from "@archstandards/parsers";
 
@@ -151,7 +157,8 @@ export function runCorpusValidation(): {
   }
 
   const overallAccuracy = totalExpected > 0 ? (totalDetected / totalExpected) * 100 : 100;
-  const cleanProjectPassed = results.find((r) => r.suiteName.includes("Clean"))?.findingsCount === 0;
+  const cleanProjectPassed =
+    results.find((r) => r.suiteName.includes("Clean"))?.findingsCount === 0;
   const allPassed = results.every((r) => r.allDetected) && cleanProjectPassed;
 
   return {
@@ -176,11 +183,15 @@ if (process.argv[1]?.endsWith("test-harness.ts") || process.argv[1]?.endsWith("t
     const expStr = r.expectedRules.length > 0 ? r.expectedRules.join(", ") : "(none)";
     const detStr = r.detectedRules.length > 0 ? r.detectedRules.join(", ") : "(none)";
     const icon = r.allDetected ? "✅ YES" : "❌ NO";
-    console.log(`| ${r.suiteName} | ${r.status.toUpperCase()} | ${r.score}/100 | ${expStr} | ${detStr} | ${icon} |`);
+    console.log(
+      `| ${r.suiteName} | ${r.status.toUpperCase()} | ${r.score}/100 | ${expStr} | ${detStr} | ${icon} |`,
+    );
   }
 
   console.log(`\nOverall Detection Accuracy: ${overallAccuracy.toFixed(1)}%`);
-  console.log(`Clean Project False Positives: ${results.find((r) => r.suiteName.includes("Clean"))?.findingsCount ?? 0}`);
+  console.log(
+    `Clean Project False Positives: ${results.find((r) => r.suiteName.includes("Clean"))?.findingsCount ?? 0}`,
+  );
   console.log(`Final Result: ${allPassed ? "PASSED ✅" : "FAILED ❌"}\n`);
 
   if (!allPassed) {

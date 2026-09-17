@@ -15,7 +15,10 @@ const SECRET_PATTERNS = [
   { pattern: /(?:AKIA)[A-Z0-9]{16}/g, label: "AWS Access Key ID" },
   { pattern: /ghp_[a-zA-Z0-9]{36}/g, label: "GitHub Personal Access Token" },
   { pattern: /sk-[a-zA-Z0-9]{20,}/g, label: "OpenAI/Stripe Secret Key" },
-  { pattern: /(?:bearer|authorization)\s*[:=]\s*["'][a-zA-Z0-9._\-]{20,}["']/gi, label: "Authorization token" },
+  {
+    pattern: /(?:bearer|authorization)\s*[:=]\s*["'][a-zA-Z0-9._\-]{20,}["']/gi,
+    label: "Authorization token",
+  },
 ];
 
 export const SEC001: Rule = {

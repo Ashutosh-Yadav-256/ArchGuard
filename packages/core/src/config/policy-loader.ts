@@ -51,9 +51,7 @@ export function loadConfig(yamlContent: string | null | undefined): ArchStandard
  * Merges a partial repository config with the default config.
  * Repository values override defaults where specified.
  */
-export function mergeWithDefaults(
-  repoConfig: Partial<ArchStandardsConfig>,
-): ArchStandardsConfig {
+export function mergeWithDefaults(repoConfig: Partial<ArchStandardsConfig>): ArchStandardsConfig {
   return ArchStandardsConfigSchema.parse({
     ...DEFAULT_CONFIG,
     ...repoConfig,

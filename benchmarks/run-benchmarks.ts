@@ -41,7 +41,7 @@ function calculateStats(timingsMs: number[]): LatencyStats {
   const p50Ms = timingsMs[Math.floor(len * 0.5)] ?? 0;
   const p95Ms = timingsMs[Math.floor(len * 0.95)] ?? 0;
   const p99Ms = timingsMs[Math.floor(len * 0.99)] ?? 0;
-  const opsPerSec = totalMs > 0 ? (len / (totalMs / 1000)) : 0;
+  const opsPerSec = totalMs > 0 ? len / (totalMs / 1000) : 0;
 
   return {
     iterations: len,
@@ -59,14 +59,17 @@ function calculateStats(timingsMs: number[]): LatencyStats {
 // ─── Synthetic File Generators ────────────────────────────────
 
 function generateSyntheticService(methodsCount: number, linesPerMethod: number): string {
-  const methodCode = Array.from({ length: methodsCount }, (_, i) => `
+  const methodCode = Array.from(
+    { length: methodsCount },
+    (_, i) => `
   calculateMetric${i}(paramA: number, paramB: string): boolean {
     const isReady = paramA > 0;
     const hasData = paramB.length > 0;
     let sum = 0;
     ${Array.from({ length: Math.max(1, linesPerMethod - 4) }, (_, j) => `sum += ${j};`).join("\n    ")}
     return isReady && hasData && sum > 0;
-  }`).join("\n");
+  }`,
+  ).join("\n");
 
   return `
 import { Injectable } from "@nestjs/common";
@@ -78,7 +81,9 @@ ${methodCode}
 }
 
 function generateSyntheticController(routeCount: number): string {
-  const routes = Array.from({ length: routeCount }, (_, i) => `
+  const routes = Array.from(
+    { length: routeCount },
+    (_, i) => `
 router.post("/items/${i}", async (req, res) => {
   const item = await itemService.create(req.body);
   return res.status(201).json(item);
@@ -86,7 +91,8 @@ router.post("/items/${i}", async (req, res) => {
 router.get("/items/${i}", async (req, res) => {
   const item = await itemService.find(req.params.id);
   return res.status(200).json(item);
-});`).join("\n");
+});`,
+  ).join("\n");
 
   return `
 import { Router } from "express";
@@ -130,7 +136,11 @@ function benchmarkParser(): Record<string, LatencyStats & { lines: number; nodes
       const elapsed = performance.now() - start;
       timings.push(elapsed);
       if (i === 0) {
-        nodeCount = parsed.classes.length + parsed.functions.length + parsed.imports.length + parsed.variables.length;
+        nodeCount =
+          parsed.classes.length +
+          parsed.functions.length +
+          parsed.imports.length +
+          parsed.variables.length;
       }
     }
 
@@ -174,7 +184,10 @@ function benchmarkIndividualRules(): Record<string, LatencyStats> {
   const results: Record<string, LatencyStats> = {};
 
   for (const rule of allRules) {
-    const file = sampleFiles.find((f) => rule.applies({ file: f, allFiles: sampleFiles, config: DEFAULT_CONFIG })) ?? sampleFiles[0]!;
+    const file =
+      sampleFiles.find((f) =>
+        rule.applies({ file: f, allFiles: sampleFiles, config: DEFAULT_CONFIG }),
+      ) ?? sampleFiles[0]!;
     const context: ReviewContext = {
       owner: "bench",
       repo: "bench-repo",
@@ -212,7 +225,10 @@ function benchmarkIndividualRules(): Record<string, LatencyStats> {
 
 // ─── 3. Macro End-to-End Pipeline Scalability ─────────────────
 
-function benchmarkPipelineScalability(): Record<string, LatencyStats & { totalFiles: number; totalLines: number; findings: number; score: number }> {
+function benchmarkPipelineScalability(): Record<
+  string,
+  LatencyStats & { totalFiles: number; totalLines: number; findings: number; score: number }
+> {
   console.log("▶ [3/5] Benchmarking End-to-End PR Pipeline Scalability...");
   const registry = new RuleRegistry();
   for (const rule of allRules) {
@@ -227,7 +243,10 @@ function benchmarkPipelineScalability(): Record<string, LatencyStats & { totalFi
     { label: "Monorepo Bulk PR (100 files)", serviceCount: 40, controllerCount: 30, testCount: 30 },
   ];
 
-  const results: Record<string, LatencyStats & { totalFiles: number; totalLines: number; findings: number; score: number }> = {};
+  const results: Record<
+    string,
+    LatencyStats & { totalFiles: number; totalLines: number; findings: number; score: number }
+  > = {};
 
   for (const workload of testWorkloads) {
     const files: ReviewFile[] = [];
@@ -467,11 +486,15 @@ export async function runAllBenchmarks() {
 
   // 1. Parser Table
   console.log("\n### 1. TypeScript AST Parser Performance");
-  console.log("| File Size | Lines | Mean (ms) | p50 (ms) | p95 (ms) | p99 (ms) | Throughput (lines/sec) |");
+  console.log(
+    "| File Size | Lines | Mean (ms) | p50 (ms) | p95 (ms) | p99 (ms) | Throughput (lines/sec) |",
+  );
   console.log("|---|---|---|---|---|---|---|");
   for (const [label, s] of Object.entries(parserResults)) {
     const linesPerSec = Math.round((s.lines * s.iterations) / (s.totalMs / 1000));
-    console.log(`| ${label} | ${s.lines} | ${s.meanMs.toFixed(2)} | ${s.p50Ms.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.p99Ms.toFixed(2)} | ${linesPerSec.toLocaleString()} |`);
+    console.log(
+      `| ${label} | ${s.lines} | ${s.meanMs.toFixed(2)} | ${s.p50Ms.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.p99Ms.toFixed(2)} | ${linesPerSec.toLocaleString()} |`,
+    );
   }
 
   // 2. Rule Latency Table
@@ -481,7 +504,9 @@ export async function runAllBenchmarks() {
   const sortedRules = Object.entries(ruleResults).sort((a, b) => b[1].meanMs - a[1].meanMs);
   for (const [ruleId, s] of sortedRules) {
     const category = allRules.find((r) => r.id === ruleId)?.category ?? "other";
-    console.log(`| ${ruleId} | ${category} | ${s.meanMs.toFixed(3)} | ${s.p50Ms.toFixed(3)} | ${s.p95Ms.toFixed(3)} | ${s.p99Ms.toFixed(3)} | ${Math.round(s.opsPerSec).toLocaleString()} |`);
+    console.log(
+      `| ${ruleId} | ${category} | ${s.meanMs.toFixed(3)} | ${s.p50Ms.toFixed(3)} | ${s.p95Ms.toFixed(3)} | ${s.p99Ms.toFixed(3)} | ${Math.round(s.opsPerSec).toLocaleString()} |`,
+    );
   }
 
   // 3. Pipeline Scalability Table
@@ -489,7 +514,9 @@ export async function runAllBenchmarks() {
   console.log("| Workload | Files | Total Lines | Mean (ms) | p95 (ms) | Findings | Score |");
   console.log("|---|---|---|---|---|---|---|");
   for (const [label, s] of Object.entries(pipelineResults)) {
-    console.log(`| ${label} | ${s.totalFiles} | ${s.totalLines} | ${s.meanMs.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.findings} | ${s.score}/100 |`);
+    console.log(
+      `| ${label} | ${s.totalFiles} | ${s.totalLines} | ${s.meanMs.toFixed(2)} | ${s.p95Ms.toFixed(2)} | ${s.findings} | ${s.score}/100 |`,
+    );
   }
 
   // 4. Memory Profiling Table
@@ -498,13 +525,21 @@ export async function runAllBenchmarks() {
   console.log(`- Peak Heap:     ${memoryResults.peakMb} MB`);
   console.log(`- Post-Run Heap: ${memoryResults.postRunMb} MB`);
   console.log(`- Retained Heap: ${memoryResults.deltaMb} MB`);
-  console.log(`- Leak Status:   ${memoryResults.leaksDetected ? "⚠️ Potential Leak Detected" : "✅ Clean (No Memory Leak)"}`);
+  console.log(
+    `- Leak Status:   ${memoryResults.leaksDetected ? "⚠️ Potential Leak Detected" : "✅ Clean (No Memory Leak)"}`,
+  );
 
   // 5. Webhook Latency Table
   console.log("\n### 5. Fastify Webhook Latencies");
-  console.log(`- /healthz:            Mean: ${webhookResults.healthcheckLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.healthcheckLatency.p95Ms.toFixed(3)}ms)`);
-  console.log(`- Valid Webhook HMAC:  Mean: ${webhookResults.validWebhookLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.validWebhookLatency.p95Ms.toFixed(3)}ms)`);
-  console.log(`- Tampered HMAC (401): Mean: ${webhookResults.tamperedWebhookLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.tamperedWebhookLatency.p95Ms.toFixed(3)}ms)`);
+  console.log(
+    `- /healthz:            Mean: ${webhookResults.healthcheckLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.healthcheckLatency.p95Ms.toFixed(3)}ms)`,
+  );
+  console.log(
+    `- Valid Webhook HMAC:  Mean: ${webhookResults.validWebhookLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.validWebhookLatency.p95Ms.toFixed(3)}ms)`,
+  );
+  console.log(
+    `- Tampered HMAC (401): Mean: ${webhookResults.tamperedWebhookLatency.meanMs.toFixed(3)}ms (p95: ${webhookResults.tamperedWebhookLatency.p95Ms.toFixed(3)}ms)`,
+  );
 
   // 6. Corpus Accuracy Table
   console.log("\n### 6. Test Corpus Detection Accuracy");
@@ -526,7 +561,10 @@ export async function runAllBenchmarks() {
   };
 }
 
-if (process.argv[1]?.endsWith("run-benchmarks.ts") || process.argv[1]?.endsWith("run-benchmarks.js")) {
+if (
+  process.argv[1]?.endsWith("run-benchmarks.ts") ||
+  process.argv[1]?.endsWith("run-benchmarks.js")
+) {
   runAllBenchmarks().catch((err) => {
     console.error("Benchmark failed:", err);
     process.exit(1);

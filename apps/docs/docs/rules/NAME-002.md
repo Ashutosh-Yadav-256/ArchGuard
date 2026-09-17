@@ -6,15 +6,16 @@ sidebar_label: NAME-002
 
 # NAME-002: Functions and Methods Must Use camelCase
 
-| Attribute | Value |
-|---|---|
-| **Category** | Naming Standards |
-| **Default Severity** | `info` |
+| Attribute            | Value                           |
+| -------------------- | ------------------------------- |
+| **Category**         | Naming Standards                |
+| **Default Severity** | `info`                          |
 | **Applicable Files** | All TypeScript/JavaScript files |
 
 ## Why It Exists (Rationale)
 
 `camelCase` is the idiomatic standard for function, method, and variable names in JavaScript and TypeScript. Consistent casing:
+
 - Eliminates stylistic debate across teams and PR reviews.
 - Differentiates callable instances and functions from class constructors (`PascalCase`) and constants (`UPPER_SNAKE_CASE`).
 - Preserves clean interop across open-source libraries and frameworks.

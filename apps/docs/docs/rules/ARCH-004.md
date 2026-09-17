@@ -6,10 +6,10 @@ sidebar_label: ARCH-004
 
 # ARCH-004: Cross-Module Dependencies Require Explicit Interfaces
 
-| Attribute | Value |
-|---|---|
-| **Category** | Architecture |
-| **Default Severity** | `warning` |
+| Attribute            | Value                        |
+| -------------------- | ---------------------------- |
+| **Category**         | Architecture                 |
+| **Default Severity** | `warning`                    |
 | **Applicable Files** | Service and Controller files |
 
 ## Why It Exists (Rationale)

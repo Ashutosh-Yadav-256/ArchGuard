@@ -6,10 +6,10 @@ sidebar_label: NAME-003
 
 # NAME-003: Boolean Variables Must Use Affirmative Prefixes
 
-| Attribute | Value |
-|---|---|
-| **Category** | Naming Standards |
-| **Default Severity** | `info` |
+| Attribute            | Value                           |
+| -------------------- | ------------------------------- |
+| **Category**         | Naming Standards                |
+| **Default Severity** | `info`                          |
 | **Applicable Files** | All TypeScript/JavaScript files |
 
 ## Why It Exists (Rationale)
@@ -17,6 +17,7 @@ sidebar_label: NAME-003
 A bare variable or property name like `active`, `enabled`, or `valid` can be ambiguous: is it a boolean status flag, an active user object, or an enabled configuration array?
 
 Prefixing boolean identifiers with affirmative verbs (`is`, `has`, `can`, `should`, `will`, `was`, `did`, `does`, `are`):
+
 - Makes conditional statements read intuitively like natural language (`if (user.isActive)` vs `if (user.active)`).
 - Instantly communicates primitive boolean intent without requiring type inspection.
 - Avoids negative prefix confusions (e.g. `isNotDisabled = false`).

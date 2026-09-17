@@ -6,10 +6,10 @@ sidebar_label: ARCH-003
 
 # ARCH-003: Repositories Must Not Depend on Controllers
 
-| Attribute | Value |
-|---|---|
-| **Category** | Architecture |
-| **Default Severity** | `error` (Blocking) |
+| Attribute            | Value                                             |
+| -------------------- | ------------------------------------------------- |
+| **Category**         | Architecture                                      |
+| **Default Severity** | `error` (Blocking)                                |
 | **Applicable Files** | Repository files (`*.repository.ts`, `*.repo.ts`) |
 
 ## Why It Exists (Rationale)
@@ -18,6 +18,7 @@ The architectural dependency chain is strictly unidirectional:
 `Controller → Service → Repository`.
 
 When a repository imports from a controller:
+
 1. It introduces an **inverted circular dependency**.
 2. The data layer cannot be tested or compiled in isolation.
 3. Transport types (like Express `Request` or NestJS `Controller`) leak into the persistence layer.

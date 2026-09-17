@@ -21,8 +21,7 @@ export const TEST004: Rule = {
   name: "Tests cannot be disabled to pass CI",
   category: "testing",
   severity: "error",
-  description:
-    "Test files must not contain disabled tests that were skipped to make CI pass.",
+  description: "Test files must not contain disabled tests that were skipped to make CI pass.",
   documentationUrl: "https://docs.archstandards.dev/rules/TEST-004",
 
   applies(context: RuleContext): boolean {

@@ -1,5 +1,9 @@
 import type { Finding } from "../models/finding.js";
-import type { CategorySummary, ReviewReport, AppliedExceptionInfo } from "../models/review-report.js";
+import type {
+  CategorySummary,
+  ReviewReport,
+  AppliedExceptionInfo,
+} from "../models/review-report.js";
 import type { RuleCategory } from "../models/severity.js";
 import type { ScoringConfig, PolicyConfig } from "../config/schemas.js";
 
@@ -118,20 +122,13 @@ export class FindingAggregator {
    * - "warn" if any finding has a severity in `warn_on`
    * - "pass" otherwise
    */
-  determineStatus(
-    findings: readonly Finding[],
-    config: PolicyConfig,
-  ): "pass" | "fail" | "warn" {
-    const hasFailing = findings.some((f) =>
-      config.fail_on.includes(f.severity),
-    );
+  determineStatus(findings: readonly Finding[], config: PolicyConfig): "pass" | "fail" | "warn" {
+    const hasFailing = findings.some((f) => config.fail_on.includes(f.severity));
     if (hasFailing) {
       return "fail";
     }
 
-    const hasWarning = findings.some((f) =>
-      config.warn_on.includes(f.severity),
-    );
+    const hasWarning = findings.some((f) => config.warn_on.includes(f.severity));
     if (hasWarning) {
       return "warn";
     }

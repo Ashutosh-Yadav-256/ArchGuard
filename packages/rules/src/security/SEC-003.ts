@@ -7,9 +7,19 @@ import { createFinding } from "@archstandards/core";
  * Config values like database URLs with credentials should use process.env.
  */
 const SENSITIVE_CONFIG_PATTERNS = [
-  { pattern: /(?:database|db)[_-]?url\s*[:=]\s*["'](?:postgres|mysql|mongodb|redis):\/\/[^"']+["']/gi, label: "Database URL with credentials" },
-  { pattern: /(?:connection[_-]?string)\s*[:=]\s*["'][^"']{20,}["']/gi, label: "Connection string" },
-  { pattern: /(?:smtp|mail)[_-]?(?:host|server)\s*[:=]\s*["'][^"']+["']/gi, label: "Mail server configuration" },
+  {
+    pattern:
+      /(?:database|db)[_-]?url\s*[:=]\s*["'](?:postgres|mysql|mongodb|redis):\/\/[^"']+["']/gi,
+    label: "Database URL with credentials",
+  },
+  {
+    pattern: /(?:connection[_-]?string)\s*[:=]\s*["'][^"']{20,}["']/gi,
+    label: "Connection string",
+  },
+  {
+    pattern: /(?:smtp|mail)[_-]?(?:host|server)\s*[:=]\s*["'][^"']+["']/gi,
+    label: "Mail server configuration",
+  },
 ];
 
 export const SEC003: Rule = {
@@ -22,7 +32,11 @@ export const SEC003: Rule = {
   documentationUrl: "https://docs.archstandards.dev/rules/SEC-003",
 
   applies(context: RuleContext): boolean {
-    return context.file.fileType === "config" || context.file.fileType === "service" || context.file.fileType === "unknown";
+    return (
+      context.file.fileType === "config" ||
+      context.file.fileType === "service" ||
+      context.file.fileType === "unknown"
+    );
   },
 
   evaluate(context: RuleContext): Finding[] {

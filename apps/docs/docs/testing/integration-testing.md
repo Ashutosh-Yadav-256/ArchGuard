@@ -9,6 +9,7 @@ sidebar_label: Integration Testing
 ## Scope & Purpose
 
 Integration tests verify that individual units collaborate correctly with external dependencies:
+
 - Web framework routers → Controllers → Services
 - Repositories → Database instances (via testcontainers or in-memory databases)
 - Event producers → Message brokers

@@ -155,10 +155,7 @@ export function parseTypeScript(content: string, fileName: string = "file.ts"): 
 
 // ─── Extraction Helpers ──────────────────────────────────────
 
-function extractImport(
-  node: ts.ImportDeclaration,
-  sourceFile: ts.SourceFile,
-): ImportInfo | null {
+function extractImport(node: ts.ImportDeclaration, sourceFile: ts.SourceFile): ImportInfo | null {
   const moduleSpecifier = (node.moduleSpecifier as ts.StringLiteral).text;
   const line = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile)).line + 1;
 
@@ -195,10 +192,7 @@ function extractImport(
   };
 }
 
-function extractClass(
-  node: ts.ClassDeclaration,
-  sourceFile: ts.SourceFile,
-): ClassInfo | null {
+function extractClass(node: ts.ClassDeclaration, sourceFile: ts.SourceFile): ClassInfo | null {
   const name = node.name?.text;
   if (!name) return null;
 
@@ -211,12 +205,9 @@ function extractClass(
   for (const member of node.members) {
     if (ts.isMethodDeclaration(member) && member.name) {
       const methodName = member.name.getText(sourceFile);
-      const methodLine = sourceFile.getLineAndCharacterOfPosition(
-        member.getStart(sourceFile),
-      ).line + 1;
-      const methodEndLine = sourceFile.getLineAndCharacterOfPosition(
-        member.getEnd(),
-      ).line + 1;
+      const methodLine =
+        sourceFile.getLineAndCharacterOfPosition(member.getStart(sourceFile)).line + 1;
+      const methodEndLine = sourceFile.getLineAndCharacterOfPosition(member.getEnd()).line + 1;
 
       methods.push({
         name: methodName,
@@ -230,9 +221,8 @@ function extractClass(
 
     if (ts.isPropertyDeclaration(member) && member.name) {
       const propName = member.name.getText(sourceFile);
-      const propLine = sourceFile.getLineAndCharacterOfPosition(
-        member.getStart(sourceFile),
-      ).line + 1;
+      const propLine =
+        sourceFile.getLineAndCharacterOfPosition(member.getStart(sourceFile)).line + 1;
 
       properties.push({
         name: propName,
@@ -272,13 +262,9 @@ function extractFunction(
   };
 }
 
-function extractVariables(
-  node: ts.VariableStatement,
-  sourceFile: ts.SourceFile,
-): VariableInfo[] {
+function extractVariables(node: ts.VariableStatement, sourceFile: ts.SourceFile): VariableInfo[] {
   const isExported = hasExportModifier(node);
-  const isConst =
-    (node.declarationList.flags & ts.NodeFlags.Const) !== 0;
+  const isConst = (node.declarationList.flags & ts.NodeFlags.Const) !== 0;
 
   return node.declarationList.declarations.map((decl) => {
     const name = decl.name.getText(sourceFile);

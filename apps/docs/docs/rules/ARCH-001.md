@@ -6,10 +6,10 @@ sidebar_label: ARCH-001
 
 # ARCH-001: Controllers Must Not Access Database Directly
 
-| Attribute | Value |
-|---|---|
-| **Category** | Architecture |
-| **Default Severity** | `error` (Blocking) |
+| Attribute            | Value                                                |
+| -------------------- | ---------------------------------------------------- |
+| **Category**         | Architecture                                         |
+| **Default Severity** | `error` (Blocking)                                   |
 | **Applicable Files** | Controller files (`*.controller.ts`, `*.handler.ts`) |
 
 ## Why It Exists (Rationale)
@@ -17,6 +17,7 @@ sidebar_label: ARCH-001
 Controllers are responsible exclusively for the presentation layer: deserializing incoming HTTP requests, executing input validation, invoking domain services, and formatting HTTP responses.
 
 When controllers query databases directly (via ORM or repositories):
+
 1. **Tight Coupling**: Presentation logic is entangled with database schema details.
 2. **Untestable Business Logic**: Verification requires mocking HTTP requests and database queries simultaneously.
 3. **Duplication**: Common queries cannot be reused across different entry points (e.g. background queue workers, CLI commands, webhooks).

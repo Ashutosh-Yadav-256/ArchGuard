@@ -33,14 +33,14 @@ pnpm lint
 
 This is a **pnpm monorepo** with clean package boundaries:
 
-| Package | Purpose | Dependencies |
-|---|---|---|
-| `packages/core` | Engine, models, pipeline | None |
-| `packages/parsers` | TypeScript AST analysis | None |
-| `packages/rules` | Rule implementations | core, parsers |
-| `packages/github-adapter` | GitHub API formatting | core |
-| `apps/github-app` | Webhook server | All packages |
-| `apps/docs` | Documentation site | None |
+| Package                   | Purpose                  | Dependencies  |
+| ------------------------- | ------------------------ | ------------- |
+| `packages/core`           | Engine, models, pipeline | None          |
+| `packages/parsers`        | TypeScript AST analysis  | None          |
+| `packages/rules`          | Rule implementations     | core, parsers |
+| `packages/github-adapter` | GitHub API formatting    | core          |
+| `apps/github-app`         | Webhook server           | All packages  |
+| `apps/docs`               | Documentation site       | None          |
 
 ## Adding a New Rule
 
@@ -122,18 +122,23 @@ Create `apps/docs/docs/rules/ARCH-005.md`:
 # ARCH-005: Your Rule Name
 
 ## Why This Rule Exists
+
 Explain the engineering principle.
 
 ## Bad Example
+
 Show violating code with explanation.
 
 ## Good Example
+
 Show correct code with explanation.
 
 ## Exceptions
+
 When it's acceptable to skip this rule.
 
 ## Detection
+
 How the rule identifies violations.
 ```
 

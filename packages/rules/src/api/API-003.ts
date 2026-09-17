@@ -51,15 +51,9 @@ export const API003: Rule = {
 
         // Check for .status(200) or just .json() without explicit status
         // (Express defaults to 200)
-        if (
-          /\.status\(200\)/.test(line) &&
-          /\.(json|send)\(/.test(line)
-        ) {
+        if (/\.status\(200\)/.test(line) && /\.(json|send)\(/.test(line)) {
           // Check if this looks like a creation response (has "create", "new", etc.)
-          const contextLines = lines.slice(
-            Math.max(0, postHandlerStartLine - 1),
-            i + 1,
-          ).join("\n");
+          const contextLines = lines.slice(Math.max(0, postHandlerStartLine - 1), i + 1).join("\n");
 
           if (/creat|save|insert|add|new/i.test(contextLines)) {
             findings.push(

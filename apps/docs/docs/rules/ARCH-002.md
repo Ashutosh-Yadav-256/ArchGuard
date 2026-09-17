@@ -6,10 +6,10 @@ sidebar_label: ARCH-002
 
 # ARCH-002: Business Logic Belongs in Service Layer
 
-| Attribute | Value |
-|---|---|
-| **Category** | Architecture |
-| **Default Severity** | `warning` |
+| Attribute            | Value                                                |
+| -------------------- | ---------------------------------------------------- |
+| **Category**         | Architecture                                         |
+| **Default Severity** | `warning`                                            |
 | **Applicable Files** | Controller files (`*.controller.ts`, `*.handler.ts`) |
 
 ## Why It Exists (Rationale)
@@ -24,9 +24,9 @@ export class OrderController {
     // ❌ Complex calculations & business logic in controller method (>20 lines)
     let discount = 0;
     if (user.isVip) {
-      discount = 0.20;
+      discount = 0.2;
     } else if (order.total > 100) {
-      discount = 0.10;
+      discount = 0.1;
     }
     // ... extensive logic
     return res.json({ finalPrice });

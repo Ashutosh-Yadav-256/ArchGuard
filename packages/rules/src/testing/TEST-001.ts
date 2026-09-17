@@ -32,8 +32,9 @@ export const TEST001: Rule = {
         return false;
       }
       const normalizedPath = "/" + f.path.replace(/\\/g, "/");
-      return testPatterns.some((pattern) =>
-        normalizedPath.includes("/" + pattern) || normalizedPath.endsWith("/" + pattern),
+      return testPatterns.some(
+        (pattern) =>
+          normalizedPath.includes("/" + pattern) || normalizedPath.endsWith("/" + pattern),
       );
     });
 
@@ -50,8 +51,7 @@ export const TEST001: Rule = {
             "Service-layer tests are the highest-ROI tests in any application. " +
             "They test business logic without HTTP concerns, are fast to run, " +
             "and catch the most impactful bugs.",
-          suggestion:
-            `Create a test file at one of: ${testPatterns.slice(0, 2).join(", ")}`,
+          suggestion: `Create a test file at one of: ${testPatterns.slice(0, 2).join(", ")}`,
           documentationUrl: this.documentationUrl,
         }),
       );

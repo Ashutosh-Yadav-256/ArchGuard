@@ -93,10 +93,7 @@ describe("RuleRegistry", () => {
 
   it("should register all rules at once", () => {
     const registry = new RuleRegistry();
-    registry.registerAll([
-      createMockRule({ id: "ARCH-001" }),
-      createMockRule({ id: "ARCH-002" }),
-    ]);
+    registry.registerAll([createMockRule({ id: "ARCH-001" }), createMockRule({ id: "ARCH-002" })]);
 
     expect(registry.size).toBe(2);
   });
@@ -231,9 +228,36 @@ describe("FindingAggregator", () => {
 
   it("should calculate score correctly", () => {
     const findings: Finding[] = [
-      { ruleId: "ARCH-001", ruleName: "Test", severity: "error", file: "a.ts", line: 1, message: "", rationale: "", documentationUrl: "" },
-      { ruleId: "API-001", ruleName: "Test", severity: "warning", file: "b.ts", line: 1, message: "", rationale: "", documentationUrl: "" },
-      { ruleId: "NAME-001", ruleName: "Test", severity: "info", file: "c.ts", line: 1, message: "", rationale: "", documentationUrl: "" },
+      {
+        ruleId: "ARCH-001",
+        ruleName: "Test",
+        severity: "error",
+        file: "a.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      },
+      {
+        ruleId: "API-001",
+        ruleName: "Test",
+        severity: "warning",
+        file: "b.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      },
+      {
+        ruleId: "NAME-001",
+        ruleName: "Test",
+        severity: "info",
+        file: "c.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      },
     ];
 
     const score = aggregator.calculateScore(findings, DEFAULT_CONFIG.scoring);
@@ -243,16 +267,18 @@ describe("FindingAggregator", () => {
   });
 
   it("should enforce score floor", () => {
-    const findings: Finding[] = Array(10).fill(null).map((_, i) => ({
-      ruleId: `ARCH-00${i}`,
-      ruleName: "Test",
-      severity: "error" as const,
-      file: "a.ts",
-      line: 1,
-      message: "",
-      rationale: "",
-      documentationUrl: "",
-    }));
+    const findings: Finding[] = Array(10)
+      .fill(null)
+      .map((_, i) => ({
+        ruleId: `ARCH-00${i}`,
+        ruleName: "Test",
+        severity: "error" as const,
+        file: "a.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      }));
 
     const score = aggregator.calculateScore(findings, DEFAULT_CONFIG.scoring);
 
@@ -262,7 +288,16 @@ describe("FindingAggregator", () => {
 
   it("should determine fail status when errors exist", () => {
     const findings: Finding[] = [
-      { ruleId: "ARCH-001", ruleName: "Test", severity: "error", file: "a.ts", line: 1, message: "", rationale: "", documentationUrl: "" },
+      {
+        ruleId: "ARCH-001",
+        ruleName: "Test",
+        severity: "error",
+        file: "a.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      },
     ];
 
     const status = aggregator.determineStatus(findings, DEFAULT_CONFIG.policy);
@@ -271,7 +306,16 @@ describe("FindingAggregator", () => {
 
   it("should determine warn status when only warnings exist", () => {
     const findings: Finding[] = [
-      { ruleId: "API-001", ruleName: "Test", severity: "warning", file: "a.ts", line: 1, message: "", rationale: "", documentationUrl: "" },
+      {
+        ruleId: "API-001",
+        ruleName: "Test",
+        severity: "warning",
+        file: "a.ts",
+        line: 1,
+        message: "",
+        rationale: "",
+        documentationUrl: "",
+      },
     ];
 
     const status = aggregator.determineStatus(findings, DEFAULT_CONFIG.policy);
@@ -441,4 +485,3 @@ exceptions:
     expect(report.status).toBe("fail");
   });
 });
-

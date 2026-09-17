@@ -59,8 +59,7 @@ export const NAME002: Rule = {
               file: context.file.path,
               line: method.line,
               message: `Method "${cls.name}.${method.name}" does not use camelCase.`,
-              rationale:
-                "camelCase for methods is the standard TypeScript convention.",
+              rationale: "camelCase for methods is the standard TypeScript convention.",
               suggestion: `Rename to "${toCamelCase(method.name)}".`,
               documentationUrl: this.documentationUrl,
             }),

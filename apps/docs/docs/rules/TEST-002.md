@@ -6,10 +6,10 @@ sidebar_label: TEST-002
 
 # TEST-002: Critical Business Logic Requires Tests
 
-| Attribute | Value |
-|---|---|
-| **Category** | Testing Standards |
-| **Default Severity** | `warning` |
+| Attribute            | Value                          |
+| -------------------- | ------------------------------ |
+| **Category**         | Testing Standards              |
+| **Default Severity** | `warning`                      |
 | **Applicable Files** | Service files (`*.service.ts`) |
 
 ## Why It Exists (Rationale)
@@ -38,10 +38,10 @@ export class DiscountService {
         rate += 0.04;
       }
     } else if (cart.couponCode === "SUMMER") {
-      rate += 0.10;
+      rate += 0.1;
     }
     if (user.daysRegistered < 30) {
-      rate = Math.max(rate, 0.10);
+      rate = Math.max(rate, 0.1);
     }
     return rate;
   }
@@ -56,7 +56,7 @@ describe("DiscountService", () => {
   it("applies VIP and high-value cart bonus discounts", () => {
     const service = new DiscountService();
     const discount = service.calculateTierDiscount(vipUser, cartOver500);
-    expect(discount).toBe(0.20);
+    expect(discount).toBe(0.2);
   });
 });
 ```

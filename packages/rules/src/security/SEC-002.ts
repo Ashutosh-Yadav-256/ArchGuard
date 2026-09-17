@@ -7,15 +7,24 @@ import { createFinding } from "@archstandards/core";
  * Log statements must not output passwords, tokens, or sensitive data.
  */
 const LOG_METHODS = ["log", "info", "warn", "error", "debug", "trace"];
-const SENSITIVE_WORDS = ["password", "passwd", "pwd", "secret", "token", "apiKey", "api_key", "authorization", "credential"];
+const SENSITIVE_WORDS = [
+  "password",
+  "passwd",
+  "pwd",
+  "secret",
+  "token",
+  "apiKey",
+  "api_key",
+  "authorization",
+  "credential",
+];
 
 export const SEC002: Rule = {
   id: "SEC-002",
   name: "Passwords must not be logged",
   category: "security",
   severity: "error",
-  description:
-    "Log statements must not output passwords, tokens, or other sensitive data.",
+  description: "Log statements must not output passwords, tokens, or other sensitive data.",
   documentationUrl: "https://docs.archstandards.dev/rules/SEC-002",
 
   applies(context: RuleContext): boolean {
@@ -32,11 +41,7 @@ export const SEC002: Rule = {
 
       // Check for logging calls
       const isLogLine = LOG_METHODS.some((method) => {
-        const patterns = [
-          `console.${method}(`,
-          `logger.${method}(`,
-          `log.${method}(`,
-        ];
+        const patterns = [`console.${method}(`, `logger.${method}(`, `log.${method}(`];
         return patterns.some((p) => line.includes(p));
       });
 

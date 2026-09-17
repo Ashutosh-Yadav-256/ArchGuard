@@ -30,12 +30,12 @@ We will acknowledge your report within 48 hours and provide a detailed response 
 
 ArchStandards requests the **minimum permissions** necessary:
 
-| Permission | Level | Purpose |
-|---|---|---|
-| `contents` | `read` | Read repository files for analysis |
-| `pull_requests` | `write` | Post review comments |
-| `checks` | `write` | Create check run status |
-| `metadata` | `read` | Repository metadata |
+| Permission      | Level   | Purpose                            |
+| --------------- | ------- | ---------------------------------- |
+| `contents`      | `read`  | Read repository files for analysis |
+| `pull_requests` | `write` | Post review comments               |
+| `checks`        | `write` | Create check run status            |
+| `metadata`      | `read`  | Repository metadata                |
 
 ### Dependencies
 
@@ -45,9 +45,9 @@ ArchStandards requests the **minimum permissions** necessary:
 
 ## Supported Versions
 
-| Version | Supported |
-|---|---|
-| 0.x.x | ✅ Current development |
+| Version | Supported              |
+| ------- | ---------------------- |
+| 0.x.x   | ✅ Current development |
 
 ## Security Best Practices for Users
 

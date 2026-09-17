@@ -21,7 +21,8 @@ describe("GitHub Adapter — Comment & Check Formatter", () => {
     file: "src/order/OrderController.ts",
     line: 12,
     message: "Controllers must not directly access database or repositories.",
-    rationale: "Direct database access from controllers tightly couples HTTP handling with persistence.",
+    rationale:
+      "Direct database access from controllers tightly couples HTTP handling with persistence.",
     suggestion: "Inject OrderService and delegate data retrieval to the service layer.",
     documentationUrl: "https://docs.archstandards.dev/rules/ARCH-001",
   };
@@ -43,7 +44,12 @@ describe("GitHub Adapter — Comment & Check Formatter", () => {
     status: "fail",
     failOn: ["error"],
     appliedExceptions: [
-      { ruleId: "SEC-001", path: "src/mock-token.ts", reason: "Test fixture mock", expires: "2026-12-31" },
+      {
+        ruleId: "SEC-001",
+        path: "src/mock-token.ts",
+        reason: "Test fixture mock",
+        expires: "2026-12-31",
+      },
     ],
     filesAnalyzed: 5,
     rulesEvaluated: 18,

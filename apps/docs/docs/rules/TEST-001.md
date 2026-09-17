@@ -6,15 +6,16 @@ sidebar_label: TEST-001
 
 # TEST-001: New Services Require Unit Tests
 
-| Attribute | Value |
-|---|---|
-| **Category** | Testing Standards |
-| **Default Severity** | `error` |
+| Attribute            | Value                          |
+| -------------------- | ------------------------------ |
+| **Category**         | Testing Standards              |
+| **Default Severity** | `error`                        |
 | **Applicable Files** | Service files (`*.service.ts`) |
 
 ## Why It Exists (Rationale)
 
 In a layered architecture, services house the core domain calculations, transaction handling, state machines, and business rules of an application. Service-layer tests represent the highest Return on Investment (ROI) among automated tests:
+
 - They run purely in-memory and execute in milliseconds.
 - They do not require spinning up HTTP servers, browsers, or network proxies.
 - They directly validate business correctness under boundary and edge-case conditions.

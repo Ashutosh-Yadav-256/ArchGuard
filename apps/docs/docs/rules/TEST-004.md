@@ -6,15 +6,16 @@ sidebar_label: TEST-004
 
 # TEST-004: Tests Cannot Be Disabled to Pass CI
 
-| Attribute | Value |
-|---|---|
-| **Category** | Testing Standards |
-| **Default Severity** | `error` |
+| Attribute            | Value                                 |
+| -------------------- | ------------------------------------- |
+| **Category**         | Testing Standards                     |
+| **Default Severity** | `error`                               |
 | **Applicable Files** | Test files (`*.test.ts`, `*.spec.ts`) |
 
 ## Why It Exists (Rationale)
 
 Disabling failing tests using modifiers like `.skip()`, `xit()`, or `xdescribe()` under pressure to pass CI pipelines creates invisible technical debt and broken windows:
+
 - It masks regressions and gives a false sense of security.
 - Developers often forget to un-skip tests after shipping features.
 - Critical assertions stop executing silently.
@@ -52,6 +53,7 @@ describe("PaymentGateway", () => {
 ## How It's Detected
 
 ArchStandards scans all test files for expressions such as:
+
 - `it.skip(`, `test.skip(`, `describe.skip(`
 - `xit(`, `xtest(`, `xdescribe(`
 - `pending()`

@@ -129,6 +129,7 @@ Publish to GitHub
 ### 1. Rule Engine Independence
 
 The rule engine knows nothing about GitHub. It takes file contents and produces findings. This means:
+
 - Rules can be tested with simple unit tests (no mocking GitHub)
 - The engine can be reused in a CLI tool, IDE plugin, or other platforms
 - Adding GitLab/Bitbucket support requires only a new adapter
@@ -136,6 +137,7 @@ The rule engine knows nothing about GitHub. It takes file contents and produces 
 ### 2. Policy-as-Code
 
 Rules are defined in YAML and validated at runtime with Zod schemas. This means:
+
 - Teams can version their standards alongside their code
 - Rules can be enabled/disabled per repository
 - Exception paths allow gradual migration
@@ -144,6 +146,7 @@ Rules are defined in YAML and validated at runtime with Zod schemas. This means:
 ### 3. Async Webhook Processing
 
 The webhook handler returns `202 Accepted` immediately and processes the review asynchronously. This ensures:
+
 - GitHub's 10-second webhook timeout is never hit
 - Multiple PRs can be processed concurrently
 - Failed reviews can be retried
@@ -151,6 +154,7 @@ The webhook handler returns `202 Accepted` immediately and processes the review 
 ### 4. Monorepo Structure
 
 Using pnpm workspaces with clean package boundaries because:
+
 - Each package has a clear responsibility
 - Dependencies are explicit and enforced
 - Packages can be versioned independently

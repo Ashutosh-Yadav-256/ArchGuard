@@ -44,8 +44,7 @@ export const API004: Rule = {
               severity: this.severity,
               file: context.file.path,
               line: lineNum,
-              message:
-                "Error response uses a raw string instead of a structured error object.",
+              message: "Error response uses a raw string instead of a structured error object.",
               rationale:
                 "A standard error schema allows clients to handle errors generically. " +
                 "Raw strings force clients to parse text, which is fragile and locale-dependent. " +

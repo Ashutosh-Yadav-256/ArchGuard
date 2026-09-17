@@ -48,7 +48,8 @@ export const ARCH004: Rule = {
       if (layer === "service" || layer === "repository") {
         // Check if the import names suggest concrete classes (not interfaces/types)
         const concreteImports = imp.namedImports.filter(
-          (name: string) => !name.startsWith("I") && !name.endsWith("Interface") && !name.endsWith("Type"),
+          (name: string) =>
+            !name.startsWith("I") && !name.endsWith("Interface") && !name.endsWith("Type"),
         );
 
         if (concreteImports.length > 0) {
@@ -105,10 +106,7 @@ function extractModuleName(filePath: string): string | null {
 /**
  * Resolve a relative import path to determine the target module.
  */
-function extractModuleFromImportPath(
-  currentFilePath: string,
-  importPath: string,
-): string | null {
+function extractModuleFromImportPath(currentFilePath: string, importPath: string): string | null {
   // Simple heuristic: look at the import path segments
   const importParts = importPath.replace(/\\/g, "/").split("/");
 

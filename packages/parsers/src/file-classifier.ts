@@ -55,10 +55,7 @@ export function classifyFile(filePath: string): FileClassification {
   }
 
   // Service
-  if (
-    fileName.includes("service.") ||
-    normalized.includes("/services/")
-  ) {
+  if (fileName.includes("service.") || normalized.includes("/services/")) {
     return "service";
   }
 
@@ -73,10 +70,7 @@ export function classifyFile(filePath: string): FileClassification {
   }
 
   // Middleware
-  if (
-    fileName.includes("middleware.") ||
-    normalized.includes("/middleware/")
-  ) {
+  if (fileName.includes("middleware.") || normalized.includes("/middleware/")) {
     return "middleware";
   }
 
@@ -92,10 +86,7 @@ export function classifyFile(filePath: string): FileClassification {
   }
 
   // Config
-  if (
-    fileName.includes("config.") ||
-    normalized.includes("/config/")
-  ) {
+  if (fileName.includes("config.") || normalized.includes("/config/")) {
     return "config";
   }
 

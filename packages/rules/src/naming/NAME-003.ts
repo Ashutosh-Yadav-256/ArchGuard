@@ -12,8 +12,7 @@ export const NAME003: Rule = {
   name: "Boolean variables use is/has/can prefixes",
   category: "naming",
   severity: "info",
-  description:
-    "Boolean variables and properties should use prefixes like is, has, can, should.",
+  description: "Boolean variables and properties should use prefixes like is, has, can, should.",
   documentationUrl: "https://docs.archstandards.dev/rules/NAME-003",
 
   applies(_context: RuleContext): boolean {
@@ -35,8 +34,7 @@ export const NAME003: Rule = {
               severity: this.severity,
               file: context.file.path,
               line: prop.line,
-              message:
-                `Boolean property "${cls.name}.${prop.name}" should use a prefix like is/has/can.`,
+              message: `Boolean property "${cls.name}.${prop.name}" should use a prefix like is/has/can.`,
               rationale:
                 'A variable named "active" is ambiguous — is it a boolean, a string, or an object? ' +
                 '"isActive" is immediately clear. This convention makes conditionals read like English.',
@@ -58,8 +56,7 @@ export const NAME003: Rule = {
             severity: this.severity,
             file: context.file.path,
             line: v.line,
-            message:
-              `Boolean variable "${v.name}" should use a prefix like is/has/can.`,
+            message: `Boolean variable "${v.name}" should use a prefix like is/has/can.`,
             rationale:
               'Boolean variables without prefixes are ambiguous. "isActive" reads better than "active" in conditionals.',
             suggestion: `Rename to "is${capitalize(v.name)}" or "has${capitalize(v.name)}".`,

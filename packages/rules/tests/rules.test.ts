@@ -295,7 +295,11 @@ router.get("/orders", (req, res) => {
 
 describe("TEST-001: New services require unit tests", () => {
   it("should flag a service file without matching test", () => {
-    const ctx = createContext("src/order/OrderService.ts", "export class OrderService {}", "service");
+    const ctx = createContext(
+      "src/order/OrderService.ts",
+      "export class OrderService {}",
+      "service",
+    );
     expect(TEST001.applies(ctx)).toBe(true);
     const findings = TEST001.evaluate(ctx);
     expect(findings.length).toBe(1);
@@ -316,7 +320,10 @@ describe("TEST-001: New services require unit tests", () => {
       language: "typescript",
     };
 
-    const ctx = createContext(serviceFile.path, serviceFile.content, "service", [serviceFile, testFile]);
+    const ctx = createContext(serviceFile.path, serviceFile.content, "service", [
+      serviceFile,
+      testFile,
+    ]);
     const findings = TEST001.evaluate(ctx);
     expect(findings.length).toBe(0);
   });
@@ -341,8 +348,18 @@ export class OrderService {
 
 describe("TEST-003: Minimum test coverage threshold", () => {
   it("should warn when test file ratio is below threshold", () => {
-    const service1: ReviewFile = { path: "src/s1.ts", content: "", fileType: "service", language: "typescript" };
-    const service2: ReviewFile = { path: "src/s2.ts", content: "", fileType: "service", language: "typescript" };
+    const service1: ReviewFile = {
+      path: "src/s1.ts",
+      content: "",
+      fileType: "service",
+      language: "typescript",
+    };
+    const service2: ReviewFile = {
+      path: "src/s2.ts",
+      content: "",
+      fileType: "service",
+      language: "typescript",
+    };
     const ctx = createContext(service1.path, service1.content, "service", [service1, service2]);
     expect(TEST003.applies(ctx)).toBe(true);
     const findings = TEST003.evaluate(ctx);

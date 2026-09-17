@@ -6,15 +6,16 @@ sidebar_label: NAME-001
 
 # NAME-001: Classes Must Use PascalCase
 
-| Attribute | Value |
-|---|---|
-| **Category** | Naming Standards |
-| **Default Severity** | `info` |
+| Attribute            | Value                           |
+| -------------------- | ------------------------------- |
+| **Category**         | Naming Standards                |
+| **Default Severity** | `info`                          |
 | **Applicable Files** | All TypeScript/JavaScript files |
 
 ## Why It Exists (Rationale)
 
 Consistent casing conventions reduce cognitive load when navigating complex codebases. `PascalCase` (UpperCamelCase) is the ubiquitous industry standard for class and interface identifiers in TypeScript and JavaScript.
+
 - Distinguishes types and constructors immediately from variable instances and methods.
 - Prevents confusing constructor invocations (e.g. `new orderService()` vs `new OrderService()`).
 - Matches TypeScript compiler diagnostic expectations and standard linting configurations.
