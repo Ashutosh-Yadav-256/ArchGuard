@@ -1,0 +1,38 @@
+{
+  "name": "archstandards",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Policy-as-code architecture governance platform that reviews pull requests against a versioned engineering playbook",
+  "author": "Ashutosh Yadav <ashutosh-yadav-256>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,json,yaml,yml,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,yaml,yml,md}\"",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean",
+    "dev": "pnpm --filter @archstandards/github-app dev",
+    "benchmark": "vitest run benchmarks/benchmark.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "prettier": "^3.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

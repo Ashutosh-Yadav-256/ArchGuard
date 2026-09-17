@@ -1,0 +1,41 @@
+# ArchStandards Default Configuration
+# This is applied when a repository has no .archstandards/config.yaml
+
+version: "1.0"
+
+rules:
+  include:
+    - architecture/*
+    - api/*
+    - testing/*
+    - security/*
+    - naming/*
+  exclude: []
+
+policy:
+  # Findings at these severity levels will cause the check to fail
+  fail_on:
+    - error
+
+  # Findings at these severity levels will be reported as warnings
+  warn_on:
+    - warning
+
+  # Findings at these severity levels will be reported but won't affect status
+  report:
+    - info
+
+scoring:
+  # Starting score for a PR review
+  base: 100
+
+  # Points deducted per finding severity
+  deductions:
+    error: 15
+    warning: 5
+    info: 1
+
+  # Minimum possible score
+  floor: 0
+
+exceptions: []

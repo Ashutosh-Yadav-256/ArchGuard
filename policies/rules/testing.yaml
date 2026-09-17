@@ -1,0 +1,69 @@
+# Testing Rules
+# These rules enforce adequate test coverage and test quality.
+
+rules:
+  - id: TEST-001
+    name: New services require unit tests
+    category: testing
+    severity: error
+    applies_to:
+      - service
+    description: >
+      Every new service file must have a corresponding test file.
+      Services contain business logic — the most valuable code to test.
+      Adding services without tests creates untested business rules.
+    detection: file-presence
+    rationale: >
+      Service-layer tests are the highest-ROI tests in any application.
+      They test business logic without HTTP concerns, are fast to run,
+      and catch the most impactful bugs.
+
+  - id: TEST-002
+    name: Critical business logic requires tests
+    category: testing
+    severity: warning
+    applies_to:
+      - service
+    description: >
+      Methods containing complex conditional logic, financial calculations,
+      or state transitions should have dedicated test cases. This rule
+      flags service methods with high cyclomatic complexity that lack
+      corresponding test assertions.
+    detection: complexity-analysis
+    rationale: >
+      Complex logic has exponentially more failure modes. Without tests,
+      you're relying on manual verification, which doesn't scale and
+      doesn't prevent regressions.
+
+  - id: TEST-003
+    name: Minimum test coverage threshold
+    category: testing
+    severity: warning
+    applies_to:
+      - project
+    description: >
+      The project should maintain a minimum test coverage threshold.
+      The default threshold is 80% line coverage for service and
+      business logic files.
+    detection: coverage-report
+    threshold: 80
+    rationale: >
+      Coverage thresholds prevent gradual erosion of test quality.
+      80% is a pragmatic target — high enough to catch most regressions,
+      low enough to avoid testing trivial code.
+
+  - id: TEST-004
+    name: Tests cannot be disabled to pass CI
+    category: testing
+    severity: error
+    applies_to:
+      - test
+    description: >
+      Test files must not contain disabled tests (.skip, xit, xdescribe,
+      pending) that were disabled to make CI pass. Disabled tests should
+      either be fixed or removed, not left as dead code.
+    detection: pattern-analysis
+    rationale: >
+      Disabled tests are broken windows. They signal that test quality
+      doesn't matter, and they accumulate over time until the test suite
+      is no longer trustworthy.

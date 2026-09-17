@@ -1,0 +1,67 @@
+# API Design Rules
+# These rules enforce consistent, well-designed REST APIs.
+
+rules:
+  - id: API-001
+    name: Use appropriate HTTP status codes
+    category: api
+    severity: warning
+    applies_to:
+      - controller
+    description: >
+      HTTP responses should use semantically correct status codes.
+      Returning 200 for everything obscures the actual result of the operation
+      and breaks client-side error handling.
+    detection: ast-analysis
+    rationale: >
+      HTTP status codes are part of the API contract. Clients, load balancers,
+      and monitoring tools rely on correct status codes to function properly.
+      Using 200 for errors makes debugging extremely difficult.
+
+  - id: API-002
+    name: Endpoints must use consistent resource naming
+    category: api
+    severity: warning
+    applies_to:
+      - controller
+    description: >
+      REST endpoints should follow consistent naming conventions:
+      plural nouns for collections (/users, /orders), kebab-case for
+      multi-word resources (/order-items), and no verbs in URLs.
+    detection: pattern-analysis
+    rationale: >
+      Inconsistent API naming creates confusion for consumers and makes
+      APIs harder to discover and document. RESTful conventions exist
+      precisely to eliminate this ambiguity.
+
+  - id: API-003
+    name: POST creation endpoints return 201
+    category: api
+    severity: warning
+    applies_to:
+      - controller
+    description: >
+      POST endpoints that create new resources should return HTTP 201 (Created),
+      not 200 (OK). The response should include a Location header pointing
+      to the newly created resource.
+    detection: ast-analysis
+    rationale: >
+      201 explicitly communicates that a new resource was created, which is
+      semantically different from a successful operation that didn't create
+      anything. This distinction matters for caching, monitoring, and client logic.
+
+  - id: API-004
+    name: Errors must follow standard response schema
+    category: api
+    severity: info
+    applies_to:
+      - controller
+    description: >
+      Error responses should follow a consistent schema with at minimum:
+      status code, error message, and a machine-readable error code.
+      Inconsistent error shapes make client-side error handling fragile.
+    detection: ast-analysis
+    rationale: >
+      A standard error schema allows clients to handle errors generically
+      without special-casing each endpoint. RFC 7807 (Problem Details for HTTP APIs)
+      provides a well-established format.

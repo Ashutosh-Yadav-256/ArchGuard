@@ -1,0 +1,51 @@
+# Security Rules
+# These rules prevent common security mistakes.
+
+rules:
+  - id: SEC-001
+    name: No hardcoded secrets
+    category: security
+    severity: error
+    applies_to:
+      - any
+    description: >
+      Source code must not contain hardcoded API keys, passwords, tokens,
+      or other secrets. These should be loaded from environment variables
+      or a secret manager at runtime.
+    detection: pattern-entropy
+    rationale: >
+      Hardcoded secrets in source code end up in version control history,
+      CI logs, and developer machines. A single leaked key can compromise
+      an entire system. This is consistently in the OWASP Top 10.
+
+  - id: SEC-002
+    name: Passwords must not be logged
+    category: security
+    severity: error
+    applies_to:
+      - any
+    description: >
+      Log statements must not output passwords, tokens, or other sensitive
+      data. This includes logging request bodies that may contain credentials,
+      or user objects that include password fields.
+    detection: ast-analysis
+    rationale: >
+      Logs are often stored in plain text, aggregated in monitoring systems,
+      and accessible to many team members. Logging passwords creates an
+      uncontrolled credential exposure surface.
+
+  - id: SEC-003
+    name: Sensitive configuration must use environment variables
+    category: security
+    severity: warning
+    applies_to:
+      - any
+    description: >
+      Configuration values like database URLs, API endpoints with credentials,
+      and service keys should be loaded from environment variables, not
+      hardcoded as string literals in configuration files.
+    detection: pattern-analysis
+    rationale: >
+      Environment variables separate configuration from code, allowing
+      different values per deployment environment without code changes.
+      This is one of the 12-factor app principles.

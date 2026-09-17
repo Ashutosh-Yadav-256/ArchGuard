@@ -1,0 +1,27 @@
+{
+  "name": "@archstandards/github-app",
+  "version": "0.1.0",
+  "description": "ArchStandards GitHub App — Fastify webhook server for PR reviews",
+  "type": "module",
+  "main": "./dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@archstandards/core": "workspace:*",
+    "@archstandards/rules": "workspace:*",
+    "@archstandards/parsers": "workspace:*",
+    "@archstandards/github-adapter": "workspace:*",
+    "fastify": "^5.2.0",
+    "octokit": "^4.1.0",
+    "pino": "^9.6.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

@@ -1,0 +1,51 @@
+# Naming Rules
+# These rules enforce consistent naming conventions.
+
+rules:
+  - id: NAME-001
+    name: Classes use PascalCase
+    category: naming
+    severity: info
+    applies_to:
+      - any
+    description: >
+      Class names should use PascalCase (e.g., OrderService, UserRepository).
+      This is the universal convention in TypeScript/JavaScript and most
+      object-oriented languages.
+    detection: ast-analysis
+    rationale: >
+      Consistent naming conventions reduce cognitive load when reading code.
+      PascalCase for classes immediately distinguishes them from variables
+      and functions, making code self-documenting.
+
+  - id: NAME-002
+    name: Functions use camelCase
+    category: naming
+    severity: info
+    applies_to:
+      - any
+    description: >
+      Function and method names should use camelCase (e.g., createOrder,
+      getUserById). This applies to standalone functions, class methods,
+      and arrow function variables.
+    detection: ast-analysis
+    rationale: >
+      camelCase for functions is the established JavaScript/TypeScript
+      convention. Mixing naming styles creates inconsistency that
+      slows down code reading and increases typo risk.
+
+  - id: NAME-003
+    name: Boolean variables use is/has/can prefixes
+    category: naming
+    severity: info
+    applies_to:
+      - any
+    description: >
+      Boolean variables and properties should use prefixes like is, has,
+      can, should, or will (e.g., isActive, hasPermission, canDelete).
+      This makes the variable's type and intent immediately clear.
+    detection: ast-analysis
+    rationale: >
+      A variable named "active" is ambiguous — is it a boolean, a string,
+      or an object? "isActive" is immediately clear. This convention
+      makes conditional expressions read like English.

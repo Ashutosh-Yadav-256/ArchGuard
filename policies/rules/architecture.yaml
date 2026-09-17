@@ -1,0 +1,68 @@
+# Architecture Rules
+# These rules enforce clean layered architecture and dependency boundaries.
+
+rules:
+  - id: ARCH-001
+    name: Controllers must not access database directly
+    category: architecture
+    severity: error
+    applies_to:
+      - controller
+    description: >
+      Controllers should delegate all data access to the service layer.
+      Direct repository or ORM usage from controllers creates tight coupling
+      between the presentation and data layers, making the codebase harder
+      to test, refactor, and maintain.
+    detection: import-analysis
+    rationale: >
+      The service layer exists to encapsulate business logic and data access.
+      When controllers bypass it, business rules get scattered across layers,
+      making it impossible to enforce invariants consistently.
+
+  - id: ARCH-002
+    name: Business logic belongs in service layer
+    category: architecture
+    severity: warning
+    applies_to:
+      - controller
+    description: >
+      Controllers should be thin — handling HTTP concerns (request parsing,
+      response formatting, status codes) only. Complex conditionals, data
+      transformations, and business rules belong in the service layer.
+    detection: complexity-analysis
+    rationale: >
+      Fat controllers are one of the most common anti-patterns. They make
+      code untestable (you need HTTP context to test business logic) and
+      create duplication when the same logic is needed from multiple endpoints.
+
+  - id: ARCH-003
+    name: Repositories must not depend on controllers
+    category: architecture
+    severity: error
+    applies_to:
+      - repository
+    description: >
+      The dependency flow should be Controller → Service → Repository.
+      Repositories must never import from or reference controller-layer code.
+    detection: import-analysis
+    rationale: >
+      Inverted dependencies create circular relationships and make it
+      impossible to use the data layer independently. This violates the
+      Dependency Inversion Principle.
+
+  - id: ARCH-004
+    name: Cross-module dependencies require explicit interfaces
+    category: architecture
+    severity: warning
+    applies_to:
+      - service
+      - controller
+    description: >
+      When one module depends on another module's internals, it should use
+      an explicit interface (TypeScript interface or type) rather than importing
+      concrete implementations directly. This enforces module boundaries.
+    detection: import-analysis
+    rationale: >
+      Coupling to concrete implementations across module boundaries makes
+      refactoring dangerous and testing difficult. Interfaces define contracts
+      that can evolve independently.

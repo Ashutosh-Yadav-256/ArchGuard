@@ -1,0 +1,25 @@
+{
+  "name": "@archstandards/github-adapter",
+  "version": "0.1.0",
+  "description": "GitHub-specific adapter for ArchStandards — formats findings as PR comments and check runs",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@archstandards/core": "workspace:*",
+    "@archstandards/parsers": "workspace:*",
+    "octokit": "^4.1.0"
+  }
+}
