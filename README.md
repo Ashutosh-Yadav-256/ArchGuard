@@ -82,6 +82,25 @@ ArchGuard ships with 18 built-in rules across five critical engineering domains:
 
 ---
 
+## Supported Languages & Ecosystems
+
+ArchGuard is designed with a pluggable parser and rule architecture supporting 10 major programming languages and modern application frameworks:
+
+| Language       | File Extensions       | Key Architectural Standards Enforced                                                                   | Status |
+| :------------- | :-------------------- | :----------------------------------------------------------------------------------------------------- | :----- |
+| **TypeScript** | `.ts`, `.tsx`         | 3-tier layering, circular dependency graphs, service boundary decoupling, AST method metrics           | Active |
+| **JavaScript** | `.js`, `.jsx`, `.mjs` | Module import boundaries, input validation enforcement, secret detection, naming conventions           | Active |
+| **Python**     | `.py`                 | Layered package imports (FastAPI/Django/Flask), PEP-8 conventions, circular imports, hardcoded configs | Active |
+| **Go**         | `.go`                 | Clean architecture boundaries, domain/repository decoupling, interface compliance, error handling      | Active |
+| **Java**       | `.java`               | Spring Boot Controller/Service/Repository separation, DTO boundary leakage, JUnit requirements         | Active |
+| **C# / .NET**  | `.cs`                 | Clean Architecture layer contracts (Controllers -> Application -> Domain), async naming conventions    | Active |
+| **Rust**       | `.rs`                 | Crate & module hierarchy rules, unsafe block audits, public API surface documentation                  | Active |
+| **Kotlin**     | `.kt`, `.kts`         | Android & backend service isolation, coroutine safety, immutability & naming standards                 | Active |
+| **PHP**        | `.php`                | Laravel & Symfony MVC separation, repository boundaries, PSR standards, raw SQL detection              | Active |
+| **Ruby**       | `.rb`                 | Rails fat controller prevention, service object boundaries, database migration secrets                 | Active |
+
+---
+
 ## Performance & Benchmarks
 
 Audited and benchmarked on Node.js v22 with monotonic timers (`performance.now()`):
