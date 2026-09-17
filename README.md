@@ -199,6 +199,12 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for lo
 
 ---
 
+## Support & Contact
+
+For questions, enterprise inquiries, or general support, please contact: **[ashutosh4tech@gmail.com](mailto:ashutosh4tech@gmail.com)**.
+
+---
+
 ## License
 
 [MIT](LICENSE) © [Ashutosh Yadav](https://github.com/Ashutosh-Yadav-256)

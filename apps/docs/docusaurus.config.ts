@@ -49,7 +49,7 @@ const config: Config = {
           label: "Engineering Playbook",
         },
         {
-          href: "https://github.com/Ashutosh-Yadav-256/archstandards",
+          href: "https://github.com/Ashutosh-Yadav-256/ArchGuard",
           label: "GitHub",
           position: "right",
         },
@@ -77,7 +77,10 @@ const config: Config = {
         },
         {
           title: "Community",
-          items: [{ label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/archstandards" }],
+          items: [
+            { label: "GitHub", href: "https://github.com/Ashutosh-Yadav-256/ArchGuard" },
+            { label: "Support", href: "mailto:ashutosh4tech@gmail.com" },
+          ],
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} ArchStandards. Built with Docusaurus.`,

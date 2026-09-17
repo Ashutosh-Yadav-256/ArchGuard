@@ -2,13 +2,13 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in ArchStandards, please report it responsibly.
+If you discover a security vulnerability in ArchGuard, please report it responsibly.
 
 **Do NOT open a public issue.**
 
-Instead, email: **security@archstandards.dev**
+Instead, email: **ashutosh4tech@gmail.com**
 
-Or use [GitHub's private vulnerability reporting](https://github.com/Ashutosh-Yadav-256/archstandards/security/advisories/new).
+Or use [GitHub's private vulnerability reporting](https://github.com/Ashutosh-Yadav-256/ArchGuard/security/advisories/new).
 
 We will acknowledge your report within 48 hours and provide a detailed response within 5 business days.
 

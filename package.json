@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@12.4.2",
   "description": "Policy-as-code architecture governance platform that reviews pull requests against a versioned engineering playbook",
-  "author": "Ashutosh Yadav <ashutosh-yadav-256>",
+  "author": "Ashutosh Yadav <ashutosh4tech@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0",

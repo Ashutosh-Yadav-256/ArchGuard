@@ -13,8 +13,8 @@ Thank you for your interest in contributing to ArchStandards! This document outl
 
 ```bash
 # Clone the repository
-git clone https://github.com/Ashutosh-Yadav-256/archstandards.git
-cd archstandards
+git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
+cd ArchGuard
 
 # Install dependencies
 pnpm install
@@ -173,6 +173,6 @@ docs(rules): add ARCH-005 documentation page
 4. Submit a PR with a clear description
 5. Address review feedback
 
-## Questions?
+## Questions & Support
 
-Open an issue or start a discussion on GitHub.
+For questions, feedback, or support, please email **[ashutosh4tech@gmail.com](mailto:ashutosh4tech@gmail.com)** or open an issue on GitHub.
