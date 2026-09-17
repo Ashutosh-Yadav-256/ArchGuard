@@ -45,9 +45,9 @@ ArchStandards requests the **minimum permissions** necessary:
 
 ## Supported Versions
 
-| Version | Supported              |
-| ------- | ---------------------- |
-| 0.x.x   | ✅ Current development |
+| Version | Supported           |
+| ------- | ------------------- |
+| 0.x.x   | Current development |
 
 ## Security Best Practices for Users
 

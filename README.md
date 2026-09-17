@@ -1,4 +1,4 @@
-# ArchGuard 🛡️
+# ArchGuard
 
 > **Policy-as-code architecture governance platform** that reviews pull requests against a versioned engineering playbook, prevents architectural erosion, and coaches engineering teams with actionable, AST-driven feedback.
 
@@ -105,16 +105,16 @@ Audited and benchmarked on Node.js v22 with monotonic timers (`performance.now()
 ```text
 ArchGuard/
 ├── apps/
-│   ├── github-app/          # Fastify GitHub App webhook server
-│   └── docs/                # Docusaurus engineering playbook & rule catalog
+│   ├── github-app/
+│   └── docs/
 ├── packages/
-│   ├── core/                # Pipeline, RuleEngine, Registry, Aggregator, Zod Schemas
-│   ├── rules/               # The 18 rule implementations across all 5 domains
-│   ├── parsers/             # TypeScript AST parser, File Classifier, Import Analyzer
-│   └── github-adapter/      # Octokit PR fetcher, HMAC verifier, Check Run publisher
-├── benchmarks/              # Real-world AST & scalability benchmark suite
-├── examples/                # Test corpus (good & bad architectural anti-patterns)
-└── policies/                # Default YAML architecture policy specifications
+│   ├── core/
+│   ├── rules/
+│   ├── parsers/
+│   └── github-adapter/
+├── benchmarks/
+├── examples/
+└── policies/
 ```
 
 ---
@@ -129,30 +129,23 @@ ArchGuard/
 ### Installation & Build
 
 ```bash
-# Clone the repository
 git clone https://github.com/Ashutosh-Yadav-256/ArchGuard.git
 cd ArchGuard
 
-# Install dependencies across all workspace packages
 pnpm install
 
-# Build all packages & documentation
 pnpm build
 
-# Run all 116 unit, integration, and corpus tests
 pnpm test
 
-# Run real-world performance benchmarks
 pnpm benchmark
 ```
 
 ### Running Locally
 
 ```bash
-# Start Fastify GitHub App webhook server (port 3000)
 pnpm --filter @archstandards/github-app start
 
-# Start Docusaurus documentation playbook (port 3000 or custom port)
 pnpm --filter @archstandards/docs start
 ```
 
@@ -167,15 +160,15 @@ version: "1.0"
 
 rules:
   include:
-    - "*" # Enable all 18 rules
+    - "*"
   exclude:
-    - "NAME-*" # Optional: disable stylistic naming rules
+    - "NAME-*"
 
 policy:
   fail_on:
-    - "error" # Block PR check run if any error severity is detected
+    - "error"
   warn_on:
-    - "warning" # Emit inline diff annotations for warnings
+    - "warning"
 
 scoring:
   base: 100
